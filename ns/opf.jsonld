@@ -1,0 +1,53 @@
+{
+  "@context": {
+    "@base": "https://oprocess.net/opf/node/",
+    "@version": 1.1,
+    "ai_context": "opf:aiContext",
+    "categories": {
+      "@id": "skos:hasTopConcept"
+    },
+    "children": {
+      "@id": "skos:narrower"
+    },
+    "dcterms": "http://purl.org/dc/terms/",
+    "description": {
+      "@container": "@language",
+      "@id": "skos:definition"
+    },
+    "domain": "opf:domain",
+    "generated_at": {
+      "@id": "dcterms:modified",
+      "@type": "xsd:dateTime"
+    },
+    "id": "@id",
+    "level": {
+      "@id": "opf:level",
+      "@type": "xsd:integer"
+    },
+    "name": {
+      "@container": "@language",
+      "@id": "skos:prefLabel"
+    },
+    "opf": "https://oprocess.net/ns/opf#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "parent_id": {
+      "@id": "skos:broader",
+      "@type": "@id"
+    },
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "source": {
+      "@container": "@set",
+      "@id": "dcterms:source"
+    },
+    "tags": {
+      "@container": "@set",
+      "@id": "opf:tag"
+    },
+    "total_nodes": {
+      "@id": "opf:totalNodes",
+      "@type": "xsd:integer"
+    },
+    "version": "owl:versionInfo",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  }
+}

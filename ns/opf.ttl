@@ -1,0 +1,202 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix opf: <https://oprocess.net/ns/opf#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+#################################################################
+# OPF-O — O'Process Framework Ontology (main body, D2 2026-07-17)
+# Aligned with GB/T 48000.3—2026 (self-declared):
+#   §5.2 ontology = entity types + properties + axioms
+#   §5.4 IRI = namespace + local identifier
+#   §6.1.2 reuse: extends SKOS instead of redefining concepts
+#   §9 extension: own namespace, modular, core untouched
+# Appendix-A metadata per term: IRI, Name, bilingual Label,
+# Definition, Domain/Range, super-class, isDefinedBy
+# (self-checked by scripts/validate_semantic.py).
+# Chapter-8 axioms are declared at the end of this file and
+# operationalised as SHACL shapes in opf-shapes.ttl (§5.3).
+#################################################################
+
+<https://oprocess.net/ns/opf> a owl:Ontology ;
+    dcterms:title "OPF-O: O'Process Framework Ontology"@en,
+        "OPF-O：O'Process 流程分类框架本体"@zh ;
+    rdfs:comment "Ontology for the O'Process Framework (OPF): process nodes from APQC PCF 8.0 / ITIL V5 / SCOR DS 14.0 / AI-era extensions, their KPIs and roles. Modeled per GB/T 48000.3—2026 (self-declared alignment); reuses SKOS and Dublin Core."@en,
+        "O'Process 流程分类框架（OPF）本体：覆盖 APQC PCF 8.0 / ITIL V5 / SCOR DS 14.0 / AI 时代扩展的流程节点及其 KPI 与岗位。按 GB/T 48000.3—2026 建模（自声明对齐），复用 SKOS 与 Dublin Core。"@zh ;
+    owl:versionIRI <https://oprocess.net/ns/opf/2.0> ;
+    owl:versionInfo "2.0.0" ;
+    rdfs:seeAlso <https://oprocess.net/ns/opf-shapes> ;
+    dcterms:creator "Tim Ou" .
+
+#################################################################
+# Classes
+#################################################################
+
+opf:ProcessNode a owl:Class ;
+    rdfs:subClassOf skos:Concept ;
+    rdfs:label "Process Node"@en, "流程节点"@zh ;
+    rdfs:comment "A node of the OPF classification: a business process or activity at one of five hierarchy levels."@en,
+        "OPF 分类体系中的节点：五级层级中某一级的业务流程或活动。"@zh ;
+    rdfs:isDefinedBy <https://oprocess.net/ns/opf> .
+
+opf:KPI a owl:Class ;
+    rdfs:label "Key Performance Indicator"@en, "关键绩效指标"@zh ;
+    rdfs:comment "A performance metric attached to a process node, with formula, unit and category."@en,
+        "挂接在流程节点上的绩效度量，含公式、单位与类别。"@zh ;
+    rdfs:isDefinedBy <https://oprocess.net/ns/opf> .
+
+opf:Role a owl:Class ;
+    rdfs:label "Role"@en, "岗位"@zh ;
+    rdfs:comment "An organizational role that performs process nodes; the curated role knowledge base covers 54 IT roles across four layers."@en,
+        "执行流程节点的组织岗位；角色知识库覆盖四层共 54 个 IT 岗位。"@zh ;
+    rdfs:isDefinedBy <https://oprocess.net/ns/opf> .
+
+#################################################################
+# Datatype properties — process nodes (emitted by the SKOS
+# export today). opf:level / opf:domain are functional per the
+# Chapter-8 functional-property rule: one value per node.
+#################################################################
+
+opf:level a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:domain opf:ProcessNode ;
+    rdfs:range xsd:integer ;
+    rdfs:label "hierarchy level"@en, "层级"@zh ;
+    rdfs:comment "Depth of the node in the OPF hierarchy (1–5)."@en,
+        "节点在 OPF 层级中的深度（1–5）。"@zh ;
+    rdfs:isDefinedBy <https://oprocess.net/ns/opf> .
+
+opf:domain a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:domain opf:ProcessNode ;
+    rdfs:range xsd:string ;
+    rdfs:label "process domain"@en, "流程域"@zh ;
+    rdfs:comment "Coarse OPF partition of the node: operating or management_support."@en,
+        "节点所属的 OPF 粗分区：operating（运营）或 management_support（管理支持）。"@zh ;
+    rdfs:isDefinedBy <https://oprocess.net/ns/opf> .
+
+opf:aiContext a owl:DatatypeProperty ;
+    rdfs:domain opf:ProcessNode ;
+    rdfs:range xsd:string ;
+    rdfs:label "AI context"@en, "AI 语境描述"@zh ;
+    rdfs:comment "LLM-oriented paraphrase of the node used for retrieval and agent grounding."@en,
+        "面向大模型检索与 agent 语义接地的节点释义。"@zh ;
+    rdfs:isDefinedBy <https://oprocess.net/ns/opf> .
+
+opf:tag a owl:DatatypeProperty ;
+    rdfs:domain opf:ProcessNode ;
+    rdfs:range xsd:string ;
+    rdfs:label "tag"@en, "标签"@zh ;
+    rdfs:comment "Free-form classification tag attached to the node."@en,
+        "附加在节点上的自由分类标签。"@zh ;
+    rdfs:isDefinedBy <https://oprocess.net/ns/opf> .
+
+opf:totalNodes a owl:DatatypeProperty ;
+    rdfs:domain skos:ConceptScheme ;
+    rdfs:range xsd:integer ;
+    rdfs:label "total nodes"@en, "节点总数"@zh ;
+    rdfs:comment "Number of process nodes in this release of the concept scheme."@en,
+        "概念方案当前版本包含的流程节点总数。"@zh ;
+    rdfs:isDefinedBy <https://oprocess.net/ns/opf> .
+
+#################################################################
+# Datatype properties — KPI and Role (instances land with the
+# P1 KPI/role export; declared now so OPF-O covers the model)
+#################################################################
+
+opf:formula a owl:DatatypeProperty ;
+    rdfs:domain opf:KPI ;
+    rdfs:range xsd:string ;
+    rdfs:label "formula"@en, "计算公式"@zh ;
+    rdfs:comment "Calculation formula of the KPI."@en,
+        "KPI 的计算公式。"@zh ;
+    rdfs:isDefinedBy <https://oprocess.net/ns/opf> .
+
+opf:unit a owl:DatatypeProperty ;
+    rdfs:domain opf:KPI ;
+    rdfs:range xsd:string ;
+    rdfs:label "unit"@en, "计量单位"@zh ;
+    rdfs:comment "Measurement unit of the KPI value."@en,
+        "KPI 取值的计量单位。"@zh ;
+    rdfs:isDefinedBy <https://oprocess.net/ns/opf> .
+
+opf:kpiCategory a owl:DatatypeProperty ;
+    rdfs:domain opf:KPI ;
+    rdfs:range xsd:string ;
+    rdfs:label "KPI category"@en, "指标类别"@zh ;
+    rdfs:comment "Category of the KPI, e.g. Process Efficiency or Cycle Time."@en,
+        "KPI 所属类别，如流程效率、周期时间。"@zh ;
+    rdfs:isDefinedBy <https://oprocess.net/ns/opf> .
+
+opf:roleLayer a owl:DatatypeProperty ;
+    rdfs:domain opf:Role ;
+    rdfs:range xsd:string ;
+    rdfs:label "role layer"@en, "岗位层"@zh ;
+    rdfs:comment "Layer of the role in the curated knowledge base: strategy, architecture, delivery or operations."@en,
+        "岗位在角色知识库中的所属层：strategy / architecture / delivery / operations。"@zh ;
+    rdfs:isDefinedBy <https://oprocess.net/ns/opf> .
+
+#################################################################
+# Object properties (populated by the P1 edge layer; extensions
+# per GB/T 48000.3 Chapter 9 — the draft-stage predecessor and
+# precondition relations were removed from the final standard,
+# so these are namespaced OPF extensions, not core terms)
+#################################################################
+
+opf:precedes a owl:ObjectProperty, owl:IrreflexiveProperty ;
+    rdfs:domain opf:ProcessNode ;
+    rdfs:range opf:ProcessNode ;
+    rdfs:label "precedes"@en, "先行于"@zh ;
+    rdfs:comment "Execution-order dependency between process nodes (e.g. SCOR chains); irreflexive — no node precedes itself."@en,
+        "流程节点间的执行先后依赖（如 SCOR 链）；非自反——节点不先行于自身。"@zh ;
+    rdfs:isDefinedBy <https://oprocess.net/ns/opf> .
+
+opf:performedBy a owl:ObjectProperty ;
+    rdfs:domain opf:ProcessNode ;
+    rdfs:range opf:Role ;
+    rdfs:label "performed by"@en, "由岗位执行"@zh ;
+    rdfs:comment "Links a process node to a role that performs it."@en,
+        "将流程节点关联到执行它的岗位。"@zh ;
+    rdfs:isDefinedBy <https://oprocess.net/ns/opf> .
+
+opf:performs a owl:ObjectProperty ;
+    owl:inverseOf opf:performedBy ;
+    rdfs:domain opf:Role ;
+    rdfs:range opf:ProcessNode ;
+    rdfs:label "performs"@en, "执行流程"@zh ;
+    rdfs:comment "Inverse of opf:performedBy: links a role to the process nodes it performs."@en,
+        "opf:performedBy 的逆属性：将岗位关联到其执行的流程节点。"@zh ;
+    rdfs:isDefinedBy <https://oprocess.net/ns/opf> .
+
+opf:measuredBy a owl:ObjectProperty ;
+    rdfs:domain opf:ProcessNode ;
+    rdfs:range opf:KPI ;
+    rdfs:label "measured by"@en, "由指标度量"@zh ;
+    rdfs:comment "Links a process node to a KPI that measures it."@en,
+        "将流程节点关联到度量它的 KPI。"@zh ;
+    rdfs:isDefinedBy <https://oprocess.net/ns/opf> .
+
+opf:measures a owl:ObjectProperty ;
+    owl:inverseOf opf:measuredBy ;
+    rdfs:domain opf:KPI ;
+    rdfs:range opf:ProcessNode ;
+    rdfs:label "measures"@en, "度量流程"@zh ;
+    rdfs:comment "Inverse of opf:measuredBy: links a KPI to the process nodes it measures."@en,
+        "opf:measuredBy 的逆属性：将 KPI 关联到其度量的流程节点。"@zh ;
+    rdfs:isDefinedBy <https://oprocess.net/ns/opf> .
+
+#################################################################
+# Axioms (GB/T 48000.3 Chapter 8) — declared here, enforced by
+# opf-shapes.ttl. Kept light per the alignment plan: validators
+# read these directly, no OWL reasoner is assumed.
+#   - disjointness rule: the three entity types are mutually
+#     exclusive (不相交规则)
+#   - functional-property rule: opf:level / opf:domain declared
+#     owl:FunctionalProperty inline above (功能性属性约束)
+#   - relation rule: opf:precedes declared irreflexive inline
+#     above (关系规则)
+#   - enumeration and hierarchy rules live in opf-shapes.ttl
+#     (枚举值约束 / 层次结构约束, §5.3 SHACL)
+#################################################################
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( opf:ProcessNode opf:KPI opf:Role ) .

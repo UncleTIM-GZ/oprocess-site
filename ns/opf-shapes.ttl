@@ -1,0 +1,147 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix opf: <https://oprocess.net/ns/opf#> .
+@prefix opfsh: <https://oprocess.net/ns/opf-shapes#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+#################################################################
+# OPF SHACL shapes — GB/T 48000.3 §5.3 constraint validation.
+# Operationalises the Chapter-8 axioms declared in opf.ttl:
+#   global-unique-identifier rule -> exactly one skos:notation
+#   enumeration rule             -> opf:domain value set
+#   functional-property rule     -> maxCount 1 on level/domain
+#   hierarchy rule               -> top concept XOR one broader
+# Run: uv run python -m scripts.validate_semantic
+#################################################################
+
+<https://oprocess.net/ns/opf-shapes> a owl:Ontology ;
+    dcterms:title "OPF SHACL shapes"@en, "OPF SHACL 约束"@zh ;
+    rdfs:comment "SHACL shapes validating the OPF SKOS export (opf-nodes.ttl) against the OPF-O axioms."@en,
+        "校验 OPF SKOS 导出（opf-nodes.ttl）是否满足 OPF-O 公理的 SHACL 约束。"@zh ;
+    owl:versionInfo "2.0.0" ;
+    rdfs:seeAlso <https://oprocess.net/ns/opf> .
+
+opfsh:ProcessNodeShape a sh:NodeShape ;
+    sh:targetClass opf:ProcessNode ;
+    sh:property [
+        sh:path skos:notation ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:string ;
+        sh:message "Every process node carries exactly one skos:notation (its OPF id)." ;
+    ] ;
+    sh:property [
+        sh:path skos:prefLabel ;
+        sh:minCount 1 ;
+        sh:uniqueLang true ;
+        sh:message "Every process node carries language-tagged prefLabels, at most one per language." ;
+    ] ;
+    sh:property [
+        sh:path skos:prefLabel ;
+        sh:qualifiedValueShape [ sh:languageIn ( "en" ) ] ;
+        sh:qualifiedMinCount 1 ;
+        sh:message "Every process node carries an English prefLabel." ;
+    ] ;
+    sh:property [
+        sh:path skos:definition ;
+        sh:uniqueLang true ;
+        sh:message "At most one skos:definition per language." ;
+    ] ;
+    sh:property [
+        sh:path opf:level ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:integer ;
+        sh:minInclusive 1 ;
+        sh:maxInclusive 5 ;
+        sh:message "opf:level is a single integer between 1 and 5." ;
+    ] ;
+    sh:property [
+        sh:path opf:domain ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "operating" "management_support" ) ;
+        sh:message "opf:domain is operating or management_support." ;
+    ] ;
+    sh:property [
+        sh:path skos:inScheme ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:hasValue <https://oprocess.net/opf> ;
+        sh:message "Every process node belongs to the OPF concept scheme." ;
+    ] ;
+    sh:property [
+        sh:path dcterms:source ;
+        sh:minCount 1 ;
+        sh:message "Every process node cites at least one source framework." ;
+    ] ;
+    sh:xone (
+        [ sh:property [ sh:path skos:broader ; sh:minCount 1 ; sh:maxCount 1 ] ;
+          sh:property [ sh:path skos:topConceptOf ; sh:maxCount 0 ] ]
+        [ sh:property [ sh:path skos:topConceptOf ; sh:minCount 1 ; sh:maxCount 1 ] ;
+          sh:property [ sh:path skos:broader ; sh:maxCount 0 ] ]
+    ) ;
+    sh:message "A node is either a top concept or has exactly one broader parent, never both." .
+
+opfsh:ConceptSchemeShape a sh:NodeShape ;
+    sh:targetClass skos:ConceptScheme ;
+    sh:property [
+        sh:path dcterms:title ;
+        sh:minCount 1 ;
+        sh:uniqueLang true ;
+        sh:message "The scheme carries language-tagged titles, at most one per language." ;
+    ] ;
+    sh:property [
+        sh:path owl:versionInfo ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "The scheme carries exactly one version string." ;
+    ] ;
+    sh:property [
+        sh:path dcterms:modified ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:dateTime ;
+        sh:message "dcterms:modified, when present, is a single xsd:dateTime." ;
+    ] ;
+    sh:property [
+        sh:path skos:hasTopConcept ;
+        sh:minCount 1 ;
+        sh:message "The scheme declares its top concepts." ;
+    ] .
+
+#################################################################
+# Chapter-8 rules that need cross-node / graph checks (SHACL-SPARQL).
+# These make the "global unique identifier" and "precedes is
+# irreflexive" axioms executable, not merely narrated.
+#################################################################
+
+# 全局唯一标识规则: no two process nodes may share a skos:notation.
+opfsh:NotationUniquenessShape a sh:NodeShape ;
+    sh:targetClass opf:ProcessNode ;
+    sh:sparql [
+        sh:message "skos:notation must be globally unique: no two process nodes may share a notation." ;
+        sh:select """
+            SELECT $this ?other WHERE {
+                $this <http://www.w3.org/2004/02/skos/core#notation> ?n .
+                ?other <http://www.w3.org/2004/02/skos/core#notation> ?n .
+                FILTER ( $this != ?other )
+            }
+        """ ;
+    ] .
+
+# 关系规则: opf:precedes is irreflexive (a node never precedes itself).
+# Vacuous until the P1 edge layer publishes opf:precedes triples; it is
+# nonetheless part of the executable gate from now on.
+opfsh:PrecedesIrreflexiveShape a sh:NodeShape ;
+    sh:targetClass opf:ProcessNode ;
+    sh:sparql [
+        sh:message "opf:precedes is irreflexive: a node must not precede itself." ;
+        sh:select """
+            SELECT $this WHERE {
+                $this <https://oprocess.net/ns/opf#precedes> $this .
+            }
+        """ ;
+    ] .

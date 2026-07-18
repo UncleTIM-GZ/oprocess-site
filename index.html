@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>O'Process Framework Ontology · OPF-O</title>
+<style>
+:root {
+  --maxw: 860px; --bg: #fff; --fg: #1a1a1a; --muted: #6b7280;
+  --border: #e5e7eb; --accent: #0b5cad; --code-bg: #f6f8fa;
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans SC",
+    Roboto, Helvetica, Arial, sans-serif;
+  --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root { --bg: #0d1117; --fg: #e6edf3; --muted: #9198a1;
+    --border: #30363d; --accent: #4aa3ff; --code-bg: #161b22; }
+}
+* { box-sizing: border-box; }
+html { font-size: 17px; }
+body { margin: 0; background: var(--bg); color: var(--fg);
+  font-family: var(--font); line-height: 1.65;
+  -webkit-font-smoothing: antialiased; }
+.wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 1.25rem; }
+header { border-bottom: 1px solid var(--border); }
+header .wrap { display: flex; flex-wrap: wrap; gap: .5rem 1.25rem;
+  align-items: baseline; padding-top: 1.1rem; padding-bottom: 1.1rem; }
+header .brand { font-weight: 650; letter-spacing: -.01em; }
+header nav { margin-left: auto; display: flex; gap: 1.1rem; flex-wrap: wrap; }
+header nav a { color: var(--muted); text-decoration: none; font-size: .92rem; }
+header nav a:hover { color: var(--accent); }
+main { padding: 2.2rem 0 3rem; }
+h1 { font-size: 2rem; line-height: 1.2; letter-spacing: -.02em; margin: 0 0 .3rem; }
+h1 .sub { display: block; font-size: 1.05rem; font-weight: 400;
+  color: var(--muted); letter-spacing: 0; margin-top: .35rem; }
+h2 { font-size: 1.35rem; margin: 2.4rem 0 .6rem; letter-spacing: -.01em; }
+h3 { font-size: 1.05rem; margin: 1.6rem 0 .3rem; }
+p, li { color: var(--fg); }
+a { color: var(--accent); text-underline-offset: 2px; }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
+  border-radius: 2px; }
+code, .iri { font-family: var(--mono); font-size: .86em; }
+.iri { color: var(--muted); word-break: break-all; }
+.lead { font-size: 1.08rem; color: var(--fg); }
+.muted { color: var(--muted); }
+.pill { display: inline-block; font-size: .74rem; font-family: var(--mono);
+  color: var(--muted); border: 1px solid var(--border); border-radius: 999px;
+  padding: .05rem .5rem; vertical-align: middle; }
+.card { border: 1px solid var(--border); border-radius: 8px;
+  padding: 1rem 1.1rem; margin: .9rem 0; }
+.card h3 { margin-top: 0; }
+.card .zh { color: var(--muted); font-weight: 400; }
+dl.meta { display: grid; grid-template-columns: max-content 1fr;
+  gap: .2rem .9rem; margin: .6rem 0 0; }
+dl.meta dt { color: var(--muted); font-size: .82rem; font-family: var(--mono); }
+dl.meta dd { margin: 0; }
+table { width: 100%; border-collapse: collapse; margin: .8rem 0; font-size: .95rem; }
+th, td { text-align: left; padding: .5rem .6rem; border-bottom: 1px solid var(--border);
+  vertical-align: top; }
+th { font-size: .76rem; text-transform: uppercase; letter-spacing: .04em;
+  color: var(--muted); font-weight: 600; }
+pre { background: var(--code-bg); border: 1px solid var(--border);
+  border-radius: 8px; padding: .9rem 1rem; overflow-x: auto; font-size: .85rem; }
+.filerow { display: flex; gap: .6rem; align-items: baseline; flex-wrap: wrap; }
+.filerow code { flex: none; }
+footer { border-top: 1px solid var(--border); color: var(--muted);
+  font-size: .86rem; padding: 1.6rem 0 3rem; }
+footer p { color: var(--muted); margin: .3rem 0; }
+.notice { border-left: 3px solid var(--accent); padding: .1rem 0 .1rem 1rem;
+  margin: 1.2rem 0; color: var(--muted); }
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<span class="brand">O'Process Framework Ontology</span>
+<nav><a href="/">首页 Home</a><a href="/ns/opf">本体 Ontology</a><a href="/ns/opf-shapes">约束 Shapes</a><a href="/opf">概念方案 Scheme</a><a href="/conformance">合规 Conformance</a></nav>
+</div></header>
+<main><div class="wrap">
+<h1>O'Process 流程分类框架本体<span class="sub">The first open
+process-classification ontology modeled to GB/T 48000.3—2026</span></h1>
+<p class="lead">OPF-O 把 APQC PCF 8.0 / ITIL V5 / SCOR DS 14.0 与 AI 时代扩展的
+2436 个流程节点、其 KPI 与岗位，表达为可被机器与 agent 消费的语义资产：
+SKOS 概念方案 + OWL 本体 + SHACL 约束 + JSON-LD 上下文。</p>
+<div class="notice">对齐 GB/T 48000.3—2026《标准数字化 第 3 部分：本体建模要求》
+（2026-08-01 实施）。本页所述为<strong>自声明对齐</strong>，非任何机构的认证或合格评定。</div>
+<h2>资源 Resources</h2>
+<table>
+<tr><th>IRI</th><th>内容</th><th>格式</th></tr>
+<tr><td><a href="/ns/opf">/ns/opf</a></td><td>OPF-O 本体（3 类 / 9 数据属性 /
+5 对象属性 / 公理）</td><td>HTML · <a href="/ns/opf.ttl">TTL</a></td></tr>
+<tr><td><a href="/ns/opf.jsonld">/ns/opf.jsonld</a></td><td>JSON-LD 1.1 上下文</td>
+<td>JSON-LD</td></tr>
+<tr><td><a href="/ns/opf-shapes">/ns/opf-shapes</a></td><td>SHACL 约束</td>
+<td>HTML · <a href="/ns/opf-shapes.ttl">TTL</a></td></tr>
+<tr><td><a href="/opf">/opf</a></td><td>概念方案 + 2436 节点</td>
+<td>HTML · <a href="/data/opf-nodes.ttl">TTL</a></td></tr>
+</table>
+<h2>为什么 Why</h2>
+<p>全球没有官方的 APQC / ITIL / SCOR 本体，国内亦无遵循 GB/T 48000.3 的
+管理流程本体。跨框架 + 双语 + AI 冲击标注 + 国标合规四合一，是受治理的
+语义资产——agent 依据可溯源的符号层推理，而非统计猜测。</p>
+<p class="muted">SQLite/JSON 为唯一事实源，RDF/JSON-LD 是投影；导出可复现：
+<code>uv run python -m scripts.export_semantic</code>。</p>
+</div></main>
+<footer><div class="wrap">
+<p>OPF-O · 对齐 GB/T 48000.3—2026（自声明，非认证）· Aligned with
+GB/T 48000.3—2026 (self-declared, not a certification).</p>
+<p><a href="/conformance">合规声明 Conformance</a> ·
+本体 IRI <span class="iri">https://oprocess.net/ns/opf</span></p>
+</div></footer>
+</body>
+</html>

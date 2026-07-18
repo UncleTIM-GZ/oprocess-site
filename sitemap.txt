@@ -1,0 +1,5 @@
+https://oprocess.net/
+https://oprocess.net/ns/opf
+https://oprocess.net/ns/opf-shapes
+https://oprocess.net/opf
+https://oprocess.net/conformance
