@@ -1,5 +1,5 @@
 OPF-O semantic validation report
-generated: 2026-07-18T05:43:22Z
+generated: 2026-07-18T16:18:58Z
 command:   uv run python -m scripts.validate_semantic
 inputs:    opf.ttl · opf-shapes.ttl · opf-nodes.ttl (2436 concepts)
 pyshacl:   0.40.0
