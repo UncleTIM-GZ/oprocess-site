@@ -185,6 +185,36 @@ opf:measures a owl:ObjectProperty ;
     rdfs:isDefinedBy <https://oprocess.net/ns/opf> .
 
 #################################################################
+# GB/T 48000.3 Chapter-9 domain extension — instant retail.
+# Additive: own opf: namespace, core ProcessNode/KPI/Role and
+# SKOS definitions untouched (§9 — extend, never modify core).
+# Seeded by the 田美如初 (TMRC) case, a real instant-retail brand.
+#################################################################
+
+opf:InstantRetailConsignment a owl:Class ;
+    rdfs:subClassOf opf:ProcessNode ;
+    rdfs:label "Instant-Retail Consignment Fulfillment"@en, "即时零售寄售履约"@zh ;
+    rdfs:comment "Retail-fulfillment process in which a brand supplies goods to instant-retail (闪电仓) stores through a pallet distributor under a consignment / prepaid-before-shipment model, so the distributor holds inventory risk and the brand's receivable days go negative. Extends the SCOR retail-fulfillment concept for the instant-retail channel."@en,
+        "品牌经整托分销商、以寄售 / 发货前预付模式向即时零售（闪电仓）门店供货的零售履约流程：分销商承担库存风险、品牌应收账期为负。为即时零售渠道扩展 SCOR 零售履约概念。"@zh ;
+    rdfs:isDefinedBy <https://oprocess.net/ns/opf> .
+
+opf:prepaidBeforeShipment a owl:DatatypeProperty ;
+    rdfs:domain opf:InstantRetailConsignment ;
+    rdfs:range xsd:boolean ;
+    rdfs:label "prepaid before shipment"@en, "发货前预付"@zh ;
+    rdfs:comment "Whether the buyer settles payment before the goods are shipped — the negative-DSO cash pattern of consignment instant retail."@en,
+        "买方是否在发货前结清货款——即时零售寄售的负应收账期现金模式。"@zh ;
+    rdfs:isDefinedBy <https://oprocess.net/ns/opf> .
+
+opf:palletDistributor a owl:ObjectProperty ;
+    rdfs:domain opf:InstantRetailConsignment ;
+    rdfs:range opf:Role ;
+    rdfs:label "pallet distributor"@en, "整托分销商"@zh ;
+    rdfs:comment "Links the consignment fulfillment to the pallet-level distributor (托盘商) that stocks and replenishes instant-retail stores."@en,
+        "将寄售履约关联到为即时零售门店备货补货的整托分销商（托盘商）。"@zh ;
+    rdfs:isDefinedBy <https://oprocess.net/ns/opf> .
+
+#################################################################
 # Axioms (GB/T 48000.3 Chapter 8) — declared here, enforced by
 # opf-shapes.ttl. Kept light per the alignment plan: validators
 # read these directly, no OWL reasoner is assumed.

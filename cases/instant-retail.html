@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ontology · OPF-O</title>
+<title>Industry Application · Case 01 · OPF-O</title>
 <meta name="description" content="OPF-O — the first open process-classification ontology built to GB/T 48000.3 (self-declared). 2,436 nodes as SKOS / OWL / SHACL / JSON-LD.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -360,99 +360,52 @@ footer.site p { color: var(--muted); font-size: 0.85rem; margin: 0.3rem 0; }
 </div>
 </div></header>
 <main><div class="wrap">
-<section class="hero">
-<p class="eyebrow">OPF-O · <span class="i18n"><span lang="en">Ontology</span><span lang="zh">本体</span></span></p>
-<h1><span class="i18n"><span lang="en">OPF-O Ontology</span><span lang="zh">OPF-O 本体</span></span><span class="sub"><span class="i18n"><span lang="en">Process nodes, KPIs and roles — a process-classification domain ontology</span><span lang="zh">流程节点、KPI 与岗位——流程分类领域本体</span></span></span></h1>
-<p class="lead"><span class="i18n"><span lang="en">A process-classification domain ontology reusing SKOS and Dublin Core, modeled to GB/T 48000.3—2026 (self-declared). The namespace is hash-based, so this page is the complete ontology document; fragment identifiers such as <code>#ProcessNode</code> resolve within it.</span><span lang="zh">流程分类领域本体，复用 SKOS / Dublin Core，按 GB/T 48000.3—2026 建模（自声明对齐）。命名空间为 hash 式，本页即完整本体文档，片段标识（如 <code>#ProcessNode</code>）在本文档内解析。</span></span></p>
-<div class="filerow"><span class="pill">Turtle</span>
-<a href="/ns/opf.ttl">/ns/opf.ttl</a> · <span class="pill">JSON-LD</span>
-<a href="/ns/opf.jsonld">/ns/opf.jsonld</a> · <span class="pill">SHACL</span>
-<a href="/ns/opf-shapes">/ns/opf-shapes</a></div>
-<p class="muted" style="margin-top:.7rem">version 2.0.0 · versionIRI
-<span class="iri">https://oprocess.net/ns/opf/2.0</span></p>
-</section><section class="block"><p class="kicker"><span class="i18n"><span lang="en">Classes</span><span lang="zh">类</span></span></p><article class="term" id="InstantRetailConsignment">
-<div class="term-h"><h3><span class="i18n"><span lang="en">Instant-Retail Consignment Fulfillment</span><span lang="zh">即时零售寄售履约</span></span></h3><span class="frag">#InstantRetailConsignment</span></div>
-<p class="def"><span class="i18n"><span lang="en">Retail-fulfillment process in which a brand supplies goods to instant-retail (闪电仓) stores through a pallet distributor under a consignment / prepaid-before-shipment model, so the distributor holds inventory risk and the brand's receivable days go negative. Extends the SCOR retail-fulfillment concept for the instant-retail channel.</span><span lang="zh">品牌经整托分销商、以寄售 / 发货前预付模式向即时零售（闪电仓）门店供货的零售履约流程：分销商承担库存风险、品牌应收账期为负。为即时零售渠道扩展 SCOR 零售履约概念。</span></span></p>
-<dl class="meta"><dt>IRI</dt><dd><span class="iri">https://oprocess.net/ns/opf#InstantRetailConsignment</span></dd><dt>subClassOf</dt><dd><code>ProcessNode</code></dd></dl>
-</article><article class="term" id="KPI">
-<div class="term-h"><h3><span class="i18n"><span lang="en">Key Performance Indicator</span><span lang="zh">关键绩效指标</span></span></h3><span class="frag">#KPI</span></div>
-<p class="def"><span class="i18n"><span lang="en">A performance metric attached to a process node, with formula, unit and category.</span><span lang="zh">挂接在流程节点上的绩效度量，含公式、单位与类别。</span></span></p>
-<dl class="meta"><dt>IRI</dt><dd><span class="iri">https://oprocess.net/ns/opf#KPI</span></dd></dl>
-</article><article class="term" id="ProcessNode">
-<div class="term-h"><h3><span class="i18n"><span lang="en">Process Node</span><span lang="zh">流程节点</span></span></h3><span class="frag">#ProcessNode</span></div>
-<p class="def"><span class="i18n"><span lang="en">A node of the OPF classification: a business process or activity at one of five hierarchy levels.</span><span lang="zh">OPF 分类体系中的节点：五级层级中某一级的业务流程或活动。</span></span></p>
-<dl class="meta"><dt>IRI</dt><dd><span class="iri">https://oprocess.net/ns/opf#ProcessNode</span></dd><dt>subClassOf</dt><dd><code>Concept</code></dd></dl>
-</article><article class="term" id="Role">
-<div class="term-h"><h3><span class="i18n"><span lang="en">Role</span><span lang="zh">岗位</span></span></h3><span class="frag">#Role</span></div>
-<p class="def"><span class="i18n"><span lang="en">An organizational role that performs process nodes; the curated role knowledge base covers 54 IT roles across four layers.</span><span lang="zh">执行流程节点的组织岗位；角色知识库覆盖四层共 54 个 IT 岗位。</span></span></p>
-<dl class="meta"><dt>IRI</dt><dd><span class="iri">https://oprocess.net/ns/opf#Role</span></dd></dl>
-</article></section><section class="block"><p class="kicker"><span class="i18n"><span lang="en">Datatype properties</span><span lang="zh">数据属性</span></span></p><article class="term" id="aiContext">
-<div class="term-h"><h3><span class="i18n"><span lang="en">AI context</span><span lang="zh">AI 语境描述</span></span></h3><span class="frag">#aiContext</span></div>
-<p class="def"><span class="i18n"><span lang="en">LLM-oriented paraphrase of the node used for retrieval and agent grounding.</span><span lang="zh">面向大模型检索与 agent 语义接地的节点释义。</span></span></p>
-<dl class="meta"><dt>IRI</dt><dd><span class="iri">https://oprocess.net/ns/opf#aiContext</span></dd><dt>domain</dt><dd><code>ProcessNode</code></dd><dt>range</dt><dd><code>string</code></dd></dl>
-</article><article class="term" id="domain">
-<div class="term-h"><h3><span class="i18n"><span lang="en">process domain</span><span lang="zh">流程域</span></span></h3><span class="frag">#domain</span></div>
-<p class="def"><span class="i18n"><span lang="en">Coarse OPF partition of the node: operating or management_support.</span><span lang="zh">节点所属的 OPF 粗分区：operating（运营）或 management_support（管理支持）。</span></span></p>
-<dl class="meta"><dt>IRI</dt><dd><span class="iri">https://oprocess.net/ns/opf#domain</span></dd><dt>domain</dt><dd><code>ProcessNode</code></dd><dt>range</dt><dd><code>string</code></dd><dt>characteristics</dt><dd><code>FunctionalProperty</code></dd></dl>
-</article><article class="term" id="formula">
-<div class="term-h"><h3><span class="i18n"><span lang="en">formula</span><span lang="zh">计算公式</span></span></h3><span class="frag">#formula</span></div>
-<p class="def"><span class="i18n"><span lang="en">Calculation formula of the KPI.</span><span lang="zh">KPI 的计算公式。</span></span></p>
-<dl class="meta"><dt>IRI</dt><dd><span class="iri">https://oprocess.net/ns/opf#formula</span></dd><dt>domain</dt><dd><code>KPI</code></dd><dt>range</dt><dd><code>string</code></dd></dl>
-</article><article class="term" id="kpiCategory">
-<div class="term-h"><h3><span class="i18n"><span lang="en">KPI category</span><span lang="zh">指标类别</span></span></h3><span class="frag">#kpiCategory</span></div>
-<p class="def"><span class="i18n"><span lang="en">Category of the KPI, e.g. Process Efficiency or Cycle Time.</span><span lang="zh">KPI 所属类别，如流程效率、周期时间。</span></span></p>
-<dl class="meta"><dt>IRI</dt><dd><span class="iri">https://oprocess.net/ns/opf#kpiCategory</span></dd><dt>domain</dt><dd><code>KPI</code></dd><dt>range</dt><dd><code>string</code></dd></dl>
-</article><article class="term" id="level">
-<div class="term-h"><h3><span class="i18n"><span lang="en">hierarchy level</span><span lang="zh">层级</span></span></h3><span class="frag">#level</span></div>
-<p class="def"><span class="i18n"><span lang="en">Depth of the node in the OPF hierarchy (1–5).</span><span lang="zh">节点在 OPF 层级中的深度（1–5）。</span></span></p>
-<dl class="meta"><dt>IRI</dt><dd><span class="iri">https://oprocess.net/ns/opf#level</span></dd><dt>domain</dt><dd><code>ProcessNode</code></dd><dt>range</dt><dd><code>integer</code></dd><dt>characteristics</dt><dd><code>FunctionalProperty</code></dd></dl>
-</article><article class="term" id="prepaidBeforeShipment">
-<div class="term-h"><h3><span class="i18n"><span lang="en">prepaid before shipment</span><span lang="zh">发货前预付</span></span></h3><span class="frag">#prepaidBeforeShipment</span></div>
-<p class="def"><span class="i18n"><span lang="en">Whether the buyer settles payment before the goods are shipped — the negative-DSO cash pattern of consignment instant retail.</span><span lang="zh">买方是否在发货前结清货款——即时零售寄售的负应收账期现金模式。</span></span></p>
-<dl class="meta"><dt>IRI</dt><dd><span class="iri">https://oprocess.net/ns/opf#prepaidBeforeShipment</span></dd><dt>domain</dt><dd><code>InstantRetailConsignment</code></dd><dt>range</dt><dd><code>boolean</code></dd></dl>
-</article><article class="term" id="roleLayer">
-<div class="term-h"><h3><span class="i18n"><span lang="en">role layer</span><span lang="zh">岗位层</span></span></h3><span class="frag">#roleLayer</span></div>
-<p class="def"><span class="i18n"><span lang="en">Layer of the role in the curated knowledge base: strategy, architecture, delivery or operations.</span><span lang="zh">岗位在角色知识库中的所属层：strategy / architecture / delivery / operations。</span></span></p>
-<dl class="meta"><dt>IRI</dt><dd><span class="iri">https://oprocess.net/ns/opf#roleLayer</span></dd><dt>domain</dt><dd><code>Role</code></dd><dt>range</dt><dd><code>string</code></dd></dl>
-</article><article class="term" id="tag">
-<div class="term-h"><h3><span class="i18n"><span lang="en">tag</span><span lang="zh">标签</span></span></h3><span class="frag">#tag</span></div>
-<p class="def"><span class="i18n"><span lang="en">Free-form classification tag attached to the node.</span><span lang="zh">附加在节点上的自由分类标签。</span></span></p>
-<dl class="meta"><dt>IRI</dt><dd><span class="iri">https://oprocess.net/ns/opf#tag</span></dd><dt>domain</dt><dd><code>ProcessNode</code></dd><dt>range</dt><dd><code>string</code></dd></dl>
-</article><article class="term" id="totalNodes">
-<div class="term-h"><h3><span class="i18n"><span lang="en">total nodes</span><span lang="zh">节点总数</span></span></h3><span class="frag">#totalNodes</span></div>
-<p class="def"><span class="i18n"><span lang="en">Number of process nodes in this release of the concept scheme.</span><span lang="zh">概念方案当前版本包含的流程节点总数。</span></span></p>
-<dl class="meta"><dt>IRI</dt><dd><span class="iri">https://oprocess.net/ns/opf#totalNodes</span></dd><dt>domain</dt><dd><code>ConceptScheme</code></dd><dt>range</dt><dd><code>integer</code></dd></dl>
-</article><article class="term" id="unit">
-<div class="term-h"><h3><span class="i18n"><span lang="en">unit</span><span lang="zh">计量单位</span></span></h3><span class="frag">#unit</span></div>
-<p class="def"><span class="i18n"><span lang="en">Measurement unit of the KPI value.</span><span lang="zh">KPI 取值的计量单位。</span></span></p>
-<dl class="meta"><dt>IRI</dt><dd><span class="iri">https://oprocess.net/ns/opf#unit</span></dd><dt>domain</dt><dd><code>KPI</code></dd><dt>range</dt><dd><code>string</code></dd></dl>
-</article></section><section class="block"><p class="kicker"><span class="i18n"><span lang="en">Object properties</span><span lang="zh">对象属性</span></span></p><article class="term" id="measuredBy">
-<div class="term-h"><h3><span class="i18n"><span lang="en">measured by</span><span lang="zh">由指标度量</span></span></h3><span class="frag">#measuredBy</span></div>
-<p class="def"><span class="i18n"><span lang="en">Links a process node to a KPI that measures it.</span><span lang="zh">将流程节点关联到度量它的 KPI。</span></span></p>
-<dl class="meta"><dt>IRI</dt><dd><span class="iri">https://oprocess.net/ns/opf#measuredBy</span></dd><dt>domain</dt><dd><code>ProcessNode</code></dd><dt>range</dt><dd><code>KPI</code></dd></dl>
-</article><article class="term" id="measures">
-<div class="term-h"><h3><span class="i18n"><span lang="en">measures</span><span lang="zh">度量流程</span></span></h3><span class="frag">#measures</span></div>
-<p class="def"><span class="i18n"><span lang="en">Inverse of opf:measuredBy: links a KPI to the process nodes it measures.</span><span lang="zh">opf:measuredBy 的逆属性：将 KPI 关联到其度量的流程节点。</span></span></p>
-<dl class="meta"><dt>IRI</dt><dd><span class="iri">https://oprocess.net/ns/opf#measures</span></dd><dt>domain</dt><dd><code>KPI</code></dd><dt>range</dt><dd><code>ProcessNode</code></dd></dl>
-</article><article class="term" id="palletDistributor">
-<div class="term-h"><h3><span class="i18n"><span lang="en">pallet distributor</span><span lang="zh">整托分销商</span></span></h3><span class="frag">#palletDistributor</span></div>
-<p class="def"><span class="i18n"><span lang="en">Links the consignment fulfillment to the pallet-level distributor (托盘商) that stocks and replenishes instant-retail stores.</span><span lang="zh">将寄售履约关联到为即时零售门店备货补货的整托分销商（托盘商）。</span></span></p>
-<dl class="meta"><dt>IRI</dt><dd><span class="iri">https://oprocess.net/ns/opf#palletDistributor</span></dd><dt>domain</dt><dd><code>InstantRetailConsignment</code></dd><dt>range</dt><dd><code>Role</code></dd></dl>
-</article><article class="term" id="performedBy">
-<div class="term-h"><h3><span class="i18n"><span lang="en">performed by</span><span lang="zh">由岗位执行</span></span></h3><span class="frag">#performedBy</span></div>
-<p class="def"><span class="i18n"><span lang="en">Links a process node to a role that performs it.</span><span lang="zh">将流程节点关联到执行它的岗位。</span></span></p>
-<dl class="meta"><dt>IRI</dt><dd><span class="iri">https://oprocess.net/ns/opf#performedBy</span></dd><dt>domain</dt><dd><code>ProcessNode</code></dd><dt>range</dt><dd><code>Role</code></dd></dl>
-</article><article class="term" id="performs">
-<div class="term-h"><h3><span class="i18n"><span lang="en">performs</span><span lang="zh">执行流程</span></span></h3><span class="frag">#performs</span></div>
-<p class="def"><span class="i18n"><span lang="en">Inverse of opf:performedBy: links a role to the process nodes it performs.</span><span lang="zh">opf:performedBy 的逆属性：将岗位关联到其执行的流程节点。</span></span></p>
-<dl class="meta"><dt>IRI</dt><dd><span class="iri">https://oprocess.net/ns/opf#performs</span></dd><dt>domain</dt><dd><code>Role</code></dd><dt>range</dt><dd><code>ProcessNode</code></dd></dl>
-</article><article class="term" id="precedes">
-<div class="term-h"><h3><span class="i18n"><span lang="en">precedes</span><span lang="zh">先行于</span></span></h3><span class="frag">#precedes</span></div>
-<p class="def"><span class="i18n"><span lang="en">Execution-order dependency between process nodes (e.g. SCOR chains); irreflexive — no node precedes itself.</span><span lang="zh">流程节点间的执行先后依赖（如 SCOR 链）；非自反——节点不先行于自身。</span></span></p>
-<dl class="meta"><dt>IRI</dt><dd><span class="iri">https://oprocess.net/ns/opf#precedes</span></dd><dt>domain</dt><dd><code>ProcessNode</code></dd><dt>range</dt><dd><code>ProcessNode</code></dd><dt>characteristics</dt><dd><code>IrreflexiveProperty</code></dd></dl>
-</article></section><section class="block">
-<p class="kicker"><span class="i18n"><span lang="en">Licensing</span><span lang="zh">许可</span></span></p>
-<p class="muted"><span class="i18n"><span lang="en">The ontology and constraint files (opf.ttl / opf-shapes.ttl / context.jsonld) are licensed CC BY 4.0; the node data dump (opf-nodes.ttl) is evaluation-use-only. The PCF / ITIL / SCOR source datasets are not published. See the <a href="/conformance">conformance declaration</a>.</span><span lang="zh">本体与约束文件（opf.ttl / opf-shapes.ttl / context.jsonld）采用 CC BY 4.0；节点数据转储（opf-nodes.ttl）当前仅供评估用途。不发布 PCF / ITIL / SCOR 原文数据集。详见<a href="/conformance">合规声明</a>。</span></span></p>
+<section class="hero masthead">
+<p class="eyebrow reveal"><span class="i18n"><span lang="en">Industry Application · Case 01</span><span lang="zh">行业应用 · 案例一</span></span></p>
+<h1 class="reveal d1"><span class="i18n"><span lang="en">A verifiable operating system for a small instant-retail food brand</span><span lang="zh">为一家即时零售即食品牌<br>装上可校验的经营操作系统</span></span></h1>
+<p class="lead reveal d2"><span class="i18n"><span lang="en">O'Process is not another process checklist. This case shows it as a governed process ontology + graph reasoning + machine-checkable assets — turning a lean team's operations into a traceable, reproducible system, not a slide deck that gathers dust.</span><span lang="zh">O'Process 不是又一个流程清单。本案例展示它作为受治理的流程本体 + 图推理 + 机器可校验资产，把一家小团队品牌的经营变成可溯源、可复跑的系统——而非看完即束之高阁的 PPT。</span></span></p>
+<div class="meta-strip reveal d3">
+<div class="meta-cell"><div class="meta-label"><span class="i18n"><span lang="en">Sector</span><span lang="zh">行业</span></span></div><div class="meta-val"><span class="i18n"><span lang="en">Instant retail</span><span lang="zh">即时零售</span></span></div></div>
+<div class="meta-cell"><div class="meta-label"><span class="i18n"><span lang="en">Method</span><span lang="zh">方法</span></span></div><div class="meta-val">OPF-Method</div></div>
+<div class="meta-cell"><div class="meta-label"><span class="i18n"><span lang="en">Standard</span><span lang="zh">国标</span></span></div><div class="meta-val">GB/T 48000.3</div></div>
+<div class="meta-cell"><div class="meta-label"><span class="i18n"><span lang="en">Status</span><span lang="zh">状态</span></span></div><div class="meta-val"><span class="i18n"><span lang="en">Desensitized</span><span lang="zh">已脱敏</span></span></div></div>
+</div>
+</section>
+<div class="notice"><span class="i18n"><span lang="en"><strong>Desensitized case.</strong> At the client's request the company name, product, location and all absolute figures are withheld; only structure and relative relationships remain. The process-node ids (APQC PCF / SCOR), the ontology extension, the SHACL validation and the GB/T 48000.3 alignment shown here are O'Process's <strong>public, independently reproducible</strong> assets — not client data.</span><span lang="zh"><strong>脱敏案例。</strong>应客户要求，隐去企业名称、产品名称、地域及全部绝对经营数据，仅保留结构与相对关系。文中的流程节点编号（APQC PCF / SCOR）、本体扩展、SHACL 校验与 GB/T 48000.3 对齐，均为 O'Process <strong>公开、可第三方复跑</strong>的资产，不含客户数据。</span></span></div><section class="block">
+<p class="kicker"><span class="i18n"><span lang="en">Client &amp; challenge</span><span lang="zh">客户与挑战</span></span></p>
+<p><span class="i18n"><span lang="en">A young instant-retail brand in ready-to-eat farm produce. Asset-light (fully contract-manufactured; its edge is brand and omni-channel operations); a core team of only a few people, the founder wearing the strategy, supply-chain, finance and IT hats at once; already reaching thousands of terminals across most of the country through instant retail (flash warehouses); and cash-constrained — it wants to grow from a single hero SKU into a category matrix, but is short on both cash and hands.</span><span lang="zh">一家专注即食农产品的即时零售新锐品牌。轻资产（产品全代工，自身强在品牌定义与全渠道运营）；核心团队仅数人，创始人一肩挑起战略、供应链、财务、IT；主力通过即时零售（闪电仓）触达全国大部分省份的数千家终端；约束是现金——想从单一爆品扩到品类矩阵，却资金紧、人手少。</span></span></p>
+<p class="muted"><span class="i18n"><span lang="en">The tension is textbook: more categories and channels usually mean more people and more process — exactly what this company lacks.</span><span lang="zh">矛盾很典型：多品类、多渠道通常意味着多人、多流程，而这家公司恰恰没有这些人。</span></span></p>
+</section><section class="block">
+<p class="kicker"><span class="i18n"><span lang="en">Method · OPF-Method</span><span lang="zh">方法 · OPF-Method 五步法</span></span></p>
+<p><span class="i18n"><span lang="en">Applying O'Process is not 'search a node and cite it'. It is a repeatable five-step method — <strong>Anchor → Graph → Instrument → Conform → Contribute</strong>: map real activities onto the standard ontology; traverse the graph (up / down / sideways) so insight emerges; attach KPIs and responsibilities; validate with SHACL against GB/T 48000.3; and feed the case back into the ontology.</span><span lang="zh">O'Process 的应用不是“搜个节点、贴在结论后当引用”，而是一套可复制的五步法——<strong>锚定 → 成图 → 挂表 → 校验 → 反哺</strong>：把真实业务映射到标准本体；上下左右图遍历让洞察涌现；挂 KPI 与职责；对齐 GB/T 48000.3 做 SHACL 校验；用案例反哺本体。</span></span></p>
+<p class="muted"><span class="i18n"><span lang="en">One discipline — the <strong>null test</strong>: if the deliverable still stands after you strip out the ontology, the graph and the provenance, the application failed. O'Process must be the engine, not a footnote.</span><span lang="zh">一条自律铁律——<strong>空转检验</strong>：若产出抽掉本体、图与溯源仍然成立，那就是失败的应用。O'Process 必须是引擎，不是脚注。</span></span></p>
+</section><section class="block">
+<p class="kicker"><span class="i18n"><span lang="en">Two findings from graph reasoning (public nodes, reproducible)</span><span lang="zh">图推理带来的两个发现（公开节点，可复跑）</span></span></p>
+<p><strong><span class="i18n"><span lang="en">Finding 1 — a cash-fulfillment loop split across governance domains.</span><span lang="zh">发现 1 — 被治理域割裂的“现金—履约回路”。</span></span></strong> <span class="i18n"><span lang="en">Instant-retail replenishment anchors to <code>SCOR 4.4.12 Fulfill Retail Product</code> (an <em>operating</em> node); cash management to <code>PCF 9.7.2 Manage cash</code> (a <em>management-support</em> node). The two sit in <strong>different governance domains</strong> — precisely why a small team misses the fulfillment-cash linkage. The cross-domain cash engine <em>emerges</em> from that seam; it is not asserted.</span><span lang="zh">把「即时零售补货」锚定到 <code>SCOR 4.4.12 零售产品履约</code>（属<em>运营</em>域），把「现金管理」锚定到 <code>PCF 9.7.2 管理现金</code>（属<em>管理支持</em>域）。二者<strong>分属不同治理域</strong>——这正是小团队会漏掉“履约与现金联动”的结构性原因。跨域现金引擎由这条“缝”<em>涌现</em>，而非拍脑袋。</span></span></p>
+<p><strong><span class="i18n"><span lang="en">Finding 2 — a coverage gap exposed by the standard decomposition.</span><span lang="zh">发现 2 — 标准分解暴露的覆盖缺口。</span></span></strong> <span class="i18n"><span lang="en">Expanding the children of <code>9.7.2 Manage cash</code> surfaces <code>9.7.2.4 Develop cash-flow forecasts</code> — which a cash-strapped company was <strong>not doing</strong>. The gap is exposed by the tree structure itself, not by opinion.</span><span lang="zh">展开 <code>9.7.2 管理现金</code> 的子活动，其中 <code>9.7.2.4 编制现金流量预测</code>——一家现金紧张的公司恰恰<strong>没有在做</strong>。这个缺口是树结构自己暴露的，不是主观判断。</span></span></p>
+</section><section class="block">
+<p class="kicker"><span class="i18n"><span lang="en">From method to machine-checkable assets</span><span lang="zh">把方法落成机器可校验的资产</span></span></p>
+<p><span class="i18n"><span lang="en">The case did not stop at slides. It produced assets aligned with GB/T 48000.3 <em>Standard Digitalization — Ontology Modeling Requirements</em>, reproducible by anyone:</span><span lang="zh">案例没有停在幻灯片。它产出了对齐 GB/T 48000.3《标准数字化 · 本体建模要求》、可第三方复跑校验的资产：</span></span></p>
+<ul>
+<li><span class="i18n"><span lang="en"><strong>Client process instances</strong> aligned to O'Process node IRIs via <code>skos:closeMatch</code> (e.g. <code>https://oprocess.net/opf/node/4.4.12</code>) — every operating claim traces to an international-standard process.</span><span lang="zh"><strong>客户流程实例</strong>经 <code>skos:closeMatch</code> 对齐到 O'Process 节点的全球唯一 IRI（如 <code>https://oprocess.net/opf/node/4.4.12</code>）——每条经营主张都可溯源到国际标准流程。</span></span></li>
+<li><span class="i18n"><span lang="en"><strong>SHACL validation passes</strong> — the client model conforms; the command and result are independently reproducible.</span><span lang="zh"><strong>SHACL 校验通过</strong>——客户模型 Conforms，命令与结果第三方可复跑。</span></span></li>
+<li><span class="i18n"><span lang="en"><strong>Ontology contribution</strong> — the brand's instant-retail consignment distribution is a pattern beyond the standard frameworks, captured as the GB/T 48000.3 Chapter-9 extension <code>opf:InstantRetailConsignment</code> (own namespace, core untouched, now in the public ontology). The case did not just consume the ontology; it upgraded it.</span><span lang="zh"><strong>反哺本体</strong>——该品牌的“即时零售寄售分销”是标准框架之外的新模式，被沉淀为 GB/T 48000.3 第 9 章合规扩展 <code>opf:InstantRetailConsignment</code>（自命名空间、核心零改动，已进入公开本体）。案例不只消费本体，还升级了本体。</span></span></li>
+<li><span class="i18n"><span lang="en"><strong>A reusable Case Kit</strong> — a generic client-modeling vocabulary plus a parameterized validator, so any company reuses the same pipeline.</span><span lang="zh"><strong>可复用 Case Kit</strong>——通用的客户建模词汇 + 参数化校验器，任何企业可复用同一套流程。</span></span></li>
+</ul>
+</section><section class="block">
+<p class="kicker"><span class="i18n"><span lang="en">Outcomes (structural, desensitized)</span><span lang="zh">成果（结构性 · 脱敏）</span></span></p>
+<ul>
+<li><span class="i18n"><span lang="en"><strong>Cash structure</strong> — distribution accounts for about three-quarters of revenue at near-zero ad spend, while owned channels consume almost all the ad-spend cash; under a cash constraint the mix should tilt toward zero-spend, fast-settling distribution.</span><span lang="zh"><strong>现金结构</strong>——分销约占四分之三收入且近乎零投流，而自营渠道吃掉几乎全部投流现金；现金约束下渠道结构应向“零投流、快回款”的分销倾斜。</span></span></li>
+<li><span class="i18n"><span lang="en"><strong>Cash cycle</strong> — with prepay-before-shipment, contract-maker payables and same-base replenishment, the cash-conversion cycle is already healthy (about thirty-odd days) and a single payables-terms negotiation turns it negative — upstream and downstream fund the expansion.</span><span lang="zh"><strong>现金周期</strong>——结合“发货前预收 + 代工尾款账期 + 同底盘补货”，现金周转周期已在健康区（约三十余天），且一个账期谈判即可转负——让上下游替扩张垫资。</span></span></li>
+<li><span class="i18n"><span lang="en"><strong>Inventory truth</strong> — turnover is actually high (not too much stock, but the hero SKU under-buffered); stockouts come from scattered orders and unstable lead times. The fix: concentrate raw-material buying to lock price, keep finished goods flexible and small-batch, and consolidate same-base shipments.</span><span lang="zh"><strong>库存真相</strong>——周转偏高（不是货太多、是爆品欠备），缺货源于“订货太散 + 交期不稳”；解法是原料集中锁价 + 成品柔性小批量 + 同底盘合并送仓。</span></span></li>
+<li><span class="i18n"><span lang="en"><strong>Growth lever</strong> — data show a store selling two product families instead of one lifts whole-store sales markedly (about forty percent). Category width, not merely more SKUs, is the validated lever.</span><span lang="zh"><strong>增长杠杆</strong>——门店从经营 1 个产品家族扩到 2 个，整店销售显著提升（约四成）。品类宽度而非单纯多 SKU，才是被验证的增长杠杆。</span></span></li>
+<li><span class="i18n"><span lang="en"><strong>Organization</strong> — deriving responsibilities from processes, the few-person team is re-cut into four operating roles, with a keep / delegate / outsource / automate ordering for the founder's many hats — adding leverage, not headcount.</span><span lang="zh"><strong>组织</strong>——用“从流程反推职责”，把数人小团队重排为四个“经营岗”，并给出创始人多顶帽子的“留 / 授 / 包 / 自动化”排序——不是加人，而是加杠杆。</span></span></li>
+</ul>
+<p class="muted"><span class="i18n"><span lang="en">All figures above are desensitized structure and relative relationships, with no absolute values.</span><span lang="zh">以上均为脱敏后的结构与相对关系，不含任何绝对数值。</span></span></p>
+</section><section class="block">
+<p class="kicker"><span class="i18n"><span lang="en">Why it is repeatable</span><span lang="zh">为什么可复制</span></span></p>
+<p><span class="i18n"><span lang="en">This case is the first consumer of the O'Process industry-application Case Kit. The same kit — modeling vocabulary, parameterized validator, ontology extension mechanism — applies to any small or mid-size company: Anchor → Graph → Instrument → Conform → Contribute, every step traceable, reproducible and standard-aligned.</span><span lang="zh">本案例是 O'Process 行业应用 Case Kit 的第一个消费者。同一套（建模词汇 + 参数化校验器 + 本体扩展机制）可直接套用于任何中小企业——锚定 → 成图 → 挂表 → 校验 → 反哺，每一步都可溯源、可复跑、对齐国标。</span></span></p>
+<p class="muted"><span class="i18n"><span lang="en">It is kind to small teams: no ERP, no extra headcount — it turns the founder's tacit, one-off operations into a repeatable, KPI'd, standard-aligned playbook, so each new SKU or channel adds near-zero marginal management load.</span><span lang="zh">它对小团队尤其友好：不追求 ERP、不加人加流程，而是把创始人脑中隐性的、一次性的操作，固化成可复制、挂了 KPI、对齐国标的“打法手册”，让每新增一个 SKU / 渠道，边际管理成本趋近于零。</span></span></p>
 </section>
 </div></main>
 <footer class="site"><div class="wrap">
