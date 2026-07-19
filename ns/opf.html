@@ -9,23 +9,21 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Source+Sans+3:wght@400;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
 <style>/* oprocess.net — OPF-O static site
-   Aesthetic: "standards paper + cinnabar seal" — an editorial specification.
+   Aesthetic: "plain paper, ink type" (素雅严肃) — a monochrome specification.
+   No accent colour; hierarchy comes from type, weight, rules and whitespace.
    Generated & inlined by scripts/build_site.py. Do not hand-edit the site;
    edit this file and rebuild. */
 
 :root {
-  --paper: #f5efe2;
-  --panel: #fbf8f0;
-  --ink: #221d16;
-  --ink-2: #4a4235;
-  --muted: #7c7161;
-  --line: #e4dccb;
-  --line-2: #d6ccb6;
-  --seal: #b23225;
-  --seal-2: #8f271d;
-  --on-seal: #fdf7ee;
-  --code-bg: #efe7d5;
-  --code-fg: #4a4235;
+  --paper: #f5f5f3;
+  --panel: #fbfbfa;
+  --ink: #1a1a19;
+  --ink-2: #3d3d3a;
+  --muted: #75756f;
+  --line: #e5e5e1;
+  --line-2: #d5d5d0;
+  --code-bg: #ededea;
+  --code-fg: #3d3d3a;
   --maxw: 800px;
   --wide: 1120px;
   --serif: "Source Serif 4", Georgia, "Songti SC", "STSong",
@@ -39,18 +37,15 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --paper: #14110a;
-    --panel: #1c1810;
-    --ink: #ece4d5;
-    --ink-2: #cabfa9;
-    --muted: #9a8f79;
-    --line: #2c2517;
-    --line-2: #3a3120;
-    --seal: #e2604d;
-    --seal-2: #c94a38;
-    --on-seal: #17120b;
-    --code-bg: #211c12;
-    --code-fg: #cabfa9;
+    --paper: #151513;
+    --panel: #1c1c1a;
+    --ink: #eaeae5;
+    --ink-2: #c2c2ba;
+    --muted: #8c8c84;
+    --line: #2a2a27;
+    --line-2: #3a3a35;
+    --code-bg: #201f1c;
+    --code-fg: #c2c2ba;
   }
 }
 
@@ -64,7 +59,7 @@ body {
   color: var(--ink);
   font-family: var(--sans);
   line-height: 1.68;
-  border-top: 3px solid var(--seal);
+  border-top: 2px solid var(--ink);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
@@ -76,11 +71,11 @@ body::before {
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  opacity: 0.035;
+  opacity: 0.03;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 @media (prefers-color-scheme: dark) {
-  body::before { opacity: 0.05; }
+  body::before { opacity: 0.045; }
 }
 
 .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 1.5rem;
@@ -97,8 +92,8 @@ html[data-lang="zh"] { --serif: var(--cjk-serif); }
 /* ---------- Header ---------- */
 header.site {
   border-bottom: 1px solid var(--line);
-  background: color-mix(in srgb, var(--paper) 86%, transparent);
-  backdrop-filter: saturate(1.2) blur(6px);
+  background: color-mix(in srgb, var(--paper) 88%, transparent);
+  backdrop-filter: saturate(1.05) blur(6px);
   position: sticky; top: 0; z-index: 20;
 }
 header.site .wrap {
@@ -108,13 +103,6 @@ header.site .wrap {
 .brand {
   font-family: var(--serif); font-weight: 600; letter-spacing: -0.01em;
   font-size: 1.02rem; color: var(--ink); text-decoration: none;
-  display: inline-flex; align-items: center; gap: 0.55rem;
-}
-.brand .mark {
-  width: 1.15rem; height: 1.15rem; border: 1.5px solid var(--seal);
-  border-radius: 3px; color: var(--seal); font-family: var(--cjk-serif);
-  font-size: 0.72rem; display: grid; place-items: center;
-  transform: rotate(-4deg); line-height: 1;
 }
 header.site nav { margin-left: auto; display: flex; gap: 1.2rem;
   flex-wrap: wrap; }
@@ -124,14 +112,14 @@ header.site nav a {
 }
 header.site nav a::after {
   content: ""; position: absolute; left: 0; right: 100%; bottom: -1px;
-  height: 1.5px; background: var(--seal); transition: right 0.28s ease;
+  height: 1.5px; background: var(--ink); transition: right 0.28s ease;
 }
 header.site nav a:hover { color: var(--ink); }
 header.site nav a:hover::after { right: 0; }
 
 .langtoggle {
   display: inline-flex; border: 1px solid var(--line-2);
-  border-radius: 999px; overflow: hidden;
+  border-radius: 3px; overflow: hidden;
 }
 .langtoggle button {
   font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.04em;
@@ -141,9 +129,9 @@ header.site nav a:hover::after { right: 0; }
 .langtoggle button + button { border-left: 1px solid var(--line-2); }
 html[data-lang="en"] .langtoggle [data-setlang="en"],
 html[data-lang="zh"] .langtoggle [data-setlang="zh"] {
-  background: var(--seal); color: var(--on-seal);
+  background: var(--ink); color: var(--paper);
 }
-.langtoggle button:focus-visible { outline: 2px solid var(--seal);
+.langtoggle button:focus-visible { outline: 2px solid var(--ink);
   outline-offset: 1px; }
 
 main { padding: 0 0 4rem; position: relative; z-index: 1; }
@@ -151,20 +139,13 @@ main { padding: 0 0 4rem; position: relative; z-index: 1; }
 /* ---------- Hero ---------- */
 .hero { padding: 3.4rem 0 2.2rem; position: relative;
   border-bottom: 1px solid var(--line); }
-.hero .seal {
-  position: absolute; top: 2.6rem; right: 0;
-  width: 92px; height: 92px; border: 3px solid var(--seal);
-  border-radius: 10px; color: var(--seal); font-family: var(--cjk-serif);
-  font-size: 2.6rem; font-weight: 700; display: grid; place-items: center;
-  transform: rotate(-6deg); box-shadow: inset 0 0 0 2px var(--seal);
-  opacity: 0.92;
-}
 .eyebrow {
   font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.16em;
-  text-transform: uppercase; color: var(--seal); margin: 0 0 0.9rem;
+  text-transform: uppercase; color: var(--ink-2); margin: 0 0 0.9rem;
 }
 h1 {
-  font-family: var(--serif); font-weight: 600; font-size: clamp(2rem, 5vw, 2.9rem);
+  font-family: var(--serif); font-weight: 600;
+  font-size: clamp(2rem, 5vw, 2.9rem);
   line-height: 1.12; letter-spacing: -0.02em; margin: 0 0 0.5rem;
   max-width: 20ch;
 }
@@ -179,17 +160,17 @@ h1 .sub {
 .pill {
   font-family: var(--mono); font-size: 0.76rem; letter-spacing: 0.02em;
   color: var(--ink-2); background: var(--panel);
-  border: 1px solid var(--line-2); border-radius: 999px;
+  border: 1px solid var(--line-2); border-radius: 3px;
   padding: 0.18rem 0.66rem;
 }
 .stamp-line { font-size: 0.92rem; color: var(--muted); margin: 0.6rem 0 0; }
-.stamp-line .tick { color: var(--seal); font-weight: 700; }
+.stamp-line .tick { color: var(--ink-2); font-weight: 700; }
 
 /* ---------- Sections ---------- */
 section.block { padding: 2.4rem 0 0; }
 .kicker {
   font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.16em;
-  text-transform: uppercase; color: var(--seal); margin: 0 0 0.5rem;
+  text-transform: uppercase; color: var(--ink-2); margin: 0 0 0.5rem;
   display: flex; align-items: center; gap: 0.7rem;
 }
 .kicker::after { content: ""; flex: 1; height: 1px; background: var(--line); }
@@ -199,10 +180,11 @@ h3 { font-family: var(--serif); font-weight: 600; font-size: 1.1rem;
   margin: 1.6rem 0 0.3rem; }
 p, li { color: var(--ink-2); }
 p { margin: 0.8rem 0; }
-a { color: var(--seal); text-decoration-color: color-mix(in srgb,
-  var(--seal) 40%, transparent); text-underline-offset: 3px; }
-a:hover { text-decoration-color: var(--seal); }
-a:focus-visible { outline: 2px solid var(--seal); outline-offset: 2px;
+a { color: var(--ink); text-decoration: underline;
+  text-decoration-color: var(--muted); text-underline-offset: 3px;
+  text-decoration-thickness: 1px; }
+a:hover { text-decoration-color: var(--ink); }
+a:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px;
   border-radius: 2px; }
 strong { color: var(--ink); font-weight: 600; }
 .muted { color: var(--muted); }
@@ -210,19 +192,19 @@ strong { color: var(--ink); font-weight: 600; }
 code, .iri { font-family: var(--mono); font-size: 0.85em; }
 code {
   background: var(--code-bg); color: var(--code-fg);
-  padding: 0.08em 0.36em; border-radius: 4px;
+  padding: 0.08em 0.36em; border-radius: 3px;
 }
 .iri { color: var(--muted); word-break: break-all; background: none; }
 
 /* ---------- Cards / term cards ---------- */
 .term {
-  border: 1px solid var(--line); border-radius: 10px; background: var(--panel);
+  border: 1px solid var(--line); border-radius: 4px; background: var(--panel);
   padding: 1.1rem 1.2rem; margin: 0.9rem 0; position: relative;
   transition: border-color 0.2s ease, transform 0.2s ease;
 }
 .term::before {
   content: ""; position: absolute; left: -1px; top: 12%; bottom: 12%;
-  width: 3px; background: var(--seal); border-radius: 3px;
+  width: 2px; background: var(--ink-2); border-radius: 2px;
   opacity: 0; transition: opacity 0.2s ease;
 }
 .term:hover { border-color: var(--line-2); transform: translateY(-1px); }
@@ -231,9 +213,9 @@ code {
   flex-wrap: wrap; }
 .term-h h3 { margin: 0; font-size: 1.08rem; }
 .frag {
-  font-family: var(--mono); font-size: 0.74rem; color: var(--seal);
-  border: 1px solid color-mix(in srgb, var(--seal) 35%, transparent);
-  border-radius: 999px; padding: 0.05rem 0.5rem; margin-left: auto;
+  font-family: var(--mono); font-size: 0.74rem; color: var(--muted);
+  border: 1px solid var(--line-2); border-radius: 3px;
+  padding: 0.05rem 0.5rem; margin-left: auto;
 }
 .term .def { color: var(--ink-2); margin: 0.55rem 0 0.2rem; font-size: 0.98rem; }
 dl.meta { display: grid; grid-template-columns: max-content 1fr;
@@ -244,7 +226,7 @@ dl.meta dd { margin: 0; }
 
 /* ---------- Tables ---------- */
 .tablewrap { overflow-x: auto; margin: 1rem 0; border: 1px solid var(--line);
-  border-radius: 10px; }
+  border-radius: 4px; }
 table { width: 100%; border-collapse: collapse; font-size: 0.94rem; }
 thead th {
   text-align: left; font-family: var(--mono); font-size: 0.7rem;
@@ -256,25 +238,25 @@ tbody td { padding: 0.6rem 0.85rem; border-bottom: 1px solid var(--line);
   vertical-align: top; }
 tbody tr:last-child td { border-bottom: 0; }
 tbody tr { transition: background 0.15s ease; }
-tbody tr:hover { background: color-mix(in srgb, var(--seal) 4%, transparent); }
+tbody tr:hover { background: color-mix(in srgb, var(--ink) 3%, transparent); }
 td .num { font-family: var(--mono); color: var(--ink); }
 
 /* ---------- Notice ---------- */
 .notice {
-  border: 1px solid color-mix(in srgb, var(--seal) 28%, var(--line));
-  border-left: 3px solid var(--seal); border-radius: 8px;
-  background: color-mix(in srgb, var(--seal) 5%, var(--panel));
+  border: 1px solid var(--line-2);
+  border-left: 3px solid var(--ink-2); border-radius: 4px;
+  background: var(--panel);
   padding: 0.85rem 1.05rem; margin: 1.4rem 0; color: var(--ink-2);
   font-size: 0.96rem;
 }
-.notice strong { color: var(--seal); }
+.notice strong { color: var(--ink); }
 
 .filerow { display: flex; gap: 0.55rem 0.7rem; align-items: baseline;
   flex-wrap: wrap; margin: 0.6rem 0 0; }
 
 pre {
   background: var(--code-bg); border: 1px solid var(--line);
-  border-radius: 10px; padding: 0.9rem 1.05rem; overflow-x: auto;
+  border-radius: 4px; padding: 0.9rem 1.05rem; overflow-x: auto;
   font-size: 0.84rem; line-height: 1.6;
 }
 pre code { background: none; padding: 0; }
@@ -282,33 +264,21 @@ pre code { background: none; padding: 0; }
 /* ---------- Footer ---------- */
 footer.site { border-top: 1px solid var(--line); margin-top: 3rem;
   padding: 2rem 0 3.4rem; }
-footer.site .wrap { display: flex; flex-wrap: wrap; gap: 0.8rem 2rem;
-  align-items: flex-start; }
-footer.site .colophon { max-width: 42ch; }
+footer.site .colophon { max-width: 60ch; }
 footer.site p { color: var(--muted); font-size: 0.85rem; margin: 0.3rem 0; }
-footer.site .seal-sm {
-  width: 44px; height: 44px; border: 2px solid var(--seal); border-radius: 6px;
-  color: var(--seal); font-family: var(--cjk-serif); font-size: 1.3rem;
-  display: grid; place-items: center; transform: rotate(-6deg);
-  box-shadow: inset 0 0 0 1.5px var(--seal); flex: none; opacity: 0.85;
-}
 
 /* ---------- Motion ---------- */
 @keyframes rise { from { opacity: 0; transform: translateY(12px); }
   to { opacity: 1; transform: none; } }
-@keyframes stamp { from { opacity: 0; transform: rotate(-6deg) scale(1.18); }
-  to { opacity: 0.92; transform: rotate(-6deg) scale(1); } }
 .reveal { opacity: 0; animation: rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1)
   forwards; }
 .reveal.d1 { animation-delay: 0.06s; }
 .reveal.d2 { animation-delay: 0.12s; }
 .reveal.d3 { animation-delay: 0.18s; }
 .reveal.d4 { animation-delay: 0.26s; }
-.hero .seal.reveal { animation: stamp 0.55s 0.3s cubic-bezier(0.2, 0.9, 0.3, 1)
-  backwards; }
 
 @media (prefers-reduced-motion: reduce) {
-  .reveal, .hero .seal.reveal { animation: none; opacity: 1; }
+  .reveal { animation: none; opacity: 1; }
   header.site { backdrop-filter: none; }
 }
 
@@ -316,7 +286,6 @@ footer.site .seal-sm {
 @media (max-width: 640px) {
   html { font-size: 16px; }
   .hero { padding-top: 2.6rem; }
-  .hero .seal { width: 64px; height: 64px; font-size: 1.8rem; top: 1.8rem; }
   h1 { max-width: none; }
   header.site nav { gap: 0.9rem; font-size: 0.8rem; order: 3; width: 100%;
     margin-left: 0; }
@@ -343,7 +312,7 @@ footer.site .seal-sm {
 </head>
 <body>
 <header class="site"><div class="wrap">
-<a class="brand" href="/"><span class="mark" aria-hidden="true">印</span>O'Process Framework Ontology</a>
+<a class="brand" href="/">O'Process Framework Ontology</a>
 <nav><a href="/"><span class="i18n"><span lang="en">Home</span><span lang="zh">首页</span></span></a><a href="/ns/opf"><span class="i18n"><span lang="en">Ontology</span><span lang="zh">本体</span></span></a><a href="/ns/opf-shapes"><span class="i18n"><span lang="en">Shapes</span><span lang="zh">约束</span></span></a><a href="/opf"><span class="i18n"><span lang="en">Scheme</span><span lang="zh">概念方案</span></span></a><a href="/conformance"><span class="i18n"><span lang="en">Conformance</span><span lang="zh">合规</span></span></a></nav>
 <div class="langtoggle" role="group" aria-label="Language / 语言">
 <button type="button" data-setlang="en" aria-pressed="true">EN</button>
@@ -435,7 +404,6 @@ footer.site .seal-sm {
 </section>
 </div></main>
 <footer class="site"><div class="wrap">
-<div class="seal-sm" aria-hidden="true">印</div>
 <div class="colophon">
 <p>OPF-O · <span class="i18n"><span lang="en">aligned with GB/T 48000.3—2026 (self-declared, not a certification)</span><span lang="zh">对齐 GB/T 48000.3—2026（自声明，非认证）</span></span></p>
 <p><span class="i18n"><span lang="en"><a href="/conformance">Conformance</a> · ontology IRI</span><span lang="zh"><a href="/conformance">合规声明</a> · 本体 IRI</span></span> <span class="iri">https://oprocess.net/ns/opf</span></p>
