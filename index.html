@@ -7,7 +7,7 @@
 <meta name="description" content="OPF-O — the first open process-classification ontology built to GB/T 48000.3 (self-declared). 2,436 nodes as SKOS / OWL / SHACL / JSON-LD.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Source+Sans+3:wght@400;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
 <style>/* oprocess.net — OPF-O static site
    Aesthetic: "plain paper, ink type" (素雅严肃) — a monochrome specification.
    No accent colour; hierarchy comes from type, weight, rules and whitespace.
@@ -28,6 +28,8 @@
   --wide: 1120px;
   --serif: "Source Serif 4", Georgia, "Songti SC", "STSong",
     "Noto Serif SC", serif;
+  --display: "Archivo", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif;
   --sans: "Source Sans 3", -apple-system, BlinkMacSystemFont, "Segoe UI",
     "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif;
   --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, "SF Mono", Menlo,
@@ -101,7 +103,7 @@ header.site .wrap {
   gap: 0.6rem 1.4rem; padding: 0.85rem 1.5rem;
 }
 .brand {
-  font-family: var(--serif); font-weight: 600; letter-spacing: -0.01em;
+  font-family: var(--display); font-weight: 600; letter-spacing: -0.01em;
   font-size: 1.02rem; color: var(--ink); text-decoration: none;
 }
 header.site nav { margin-left: auto; display: flex; gap: 1.2rem;
@@ -144,7 +146,7 @@ main { padding: 0 0 4rem; position: relative; z-index: 1; }
   text-transform: uppercase; color: var(--ink-2); margin: 0 0 0.9rem;
 }
 h1 {
-  font-family: var(--serif); font-weight: 600;
+  font-family: var(--display); font-weight: 600;
   font-size: clamp(2rem, 5vw, 2.9rem);
   line-height: 1.12; letter-spacing: -0.02em; margin: 0 0 0.5rem;
   max-width: 20ch;
@@ -170,9 +172,12 @@ h1 .sub {
 .masthead { text-align: center; border-bottom: 0; padding-bottom: 2.6rem; }
 .masthead .eyebrow { color: var(--muted); }
 .masthead h1 {
-  max-width: 24ch; margin-inline: auto; text-wrap: balance;
-  font-size: clamp(1.95rem, 4.4vw, 2.8rem);
+  max-width: 26ch; margin-inline: auto; text-wrap: balance;
+  font-size: clamp(2.34rem, 5.28vw, 3.36rem);
+  letter-spacing: -0.025em;
 }
+/* Chinese title uses an explicit <br>; let it govern, don't re-wrap. */
+html[data-lang="zh"] .masthead h1 { max-width: none; text-wrap: normal; }
 .masthead .lead {
   max-width: 56ch; margin-inline: auto; text-wrap: pretty; color: var(--ink-2);
 }
@@ -192,7 +197,7 @@ h1 .sub {
   text-transform: uppercase; color: var(--muted);
 }
 .meta-val {
-  font-family: var(--serif); font-size: 1.15rem; color: var(--ink);
+  font-family: var(--display); font-size: 1.15rem; color: var(--ink);
   margin-top: 0.3rem; line-height: 1.15;
 }
 @media (max-width: 560px) {
@@ -209,9 +214,9 @@ section.block { padding: 2.4rem 0 0; }
   display: flex; align-items: center; gap: 0.7rem;
 }
 .kicker::after { content: ""; flex: 1; height: 1px; background: var(--line); }
-h2 { font-family: var(--serif); font-weight: 600; font-size: 1.5rem;
+h2 { font-family: var(--display); font-weight: 600; font-size: 1.5rem;
   letter-spacing: -0.01em; line-height: 1.25; margin: 0 0 0.8rem; }
-h3 { font-family: var(--serif); font-weight: 600; font-size: 1.1rem;
+h3 { font-family: var(--display); font-weight: 600; font-size: 1.1rem;
   margin: 1.6rem 0 0.3rem; }
 p, li { color: var(--ink-2); }
 p { margin: 0.8rem 0; }
@@ -357,7 +362,7 @@ footer.site p { color: var(--muted); font-size: 0.85rem; margin: 0.3rem 0; }
 <main><div class="wrap">
 <section class="hero masthead">
 <p class="eyebrow reveal"><span class="i18n"><span lang="en">GB/T 48000.3—2026 · Ontology Modeling Requirements</span><span lang="zh">GB/T 48000.3—2026 · 本体建模要求</span></span></p>
-<h1 class="reveal d1"><span class="i18n"><span lang="en">The first open process-classification ontology built to GB/T 48000.3</span><span lang="zh">首个照 GB/T 48000.3 建模的开放流程分类本体</span></span></h1>
+<h1 class="reveal d1"><span class="i18n"><span lang="en">The first open process-classification ontology built to GB/T 48000.3</span><span lang="zh">首个照 GB/T 48000.3 建模的<br>开放流程分类本体</span></span></h1>
 <p class="lead reveal d2"><span class="i18n"><span lang="en">O'Process Framework Ontology — APQC PCF 8.0, ITIL V5 and SCOR DS 14.0, with their KPIs and roles, unified into one governed semantic layer.</span><span lang="zh">O'Process 流程分类框架本体——APQC PCF 8.0、ITIL V5 与 SCOR DS 14.0 及其 KPI 与岗位，统一为一个受治理的语义层。</span></span></p>
 <p class="tagline reveal d2">SKOS · OWL · SHACL · JSON-LD</p>
 <div class="meta-strip reveal d3">
