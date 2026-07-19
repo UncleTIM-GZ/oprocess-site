@@ -1,106 +1,406 @@
 <!doctype html>
-<html lang="zh">
+<html lang="en" data-lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>概念方案 Scheme · OPF-O</title>
-<style>
+<title>Concept Scheme · OPF-O</title>
+<meta name="description" content="OPF-O — the first open process-classification ontology built to GB/T 48000.3 (self-declared). 2,436 nodes as SKOS / OWL / SHACL / JSON-LD.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Source+Sans+3:wght@400;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<style>/* oprocess.net — OPF-O static site
+   Aesthetic: "standards paper + cinnabar seal" — an editorial specification.
+   Generated & inlined by scripts/build_site.py. Do not hand-edit the site;
+   edit this file and rebuild. */
+
 :root {
-  --maxw: 860px; --bg: #fff; --fg: #1a1a1a; --muted: #6b7280;
-  --border: #e5e7eb; --accent: #0b5cad; --code-bg: #f6f8fa;
-  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans SC",
-    Roboto, Helvetica, Arial, sans-serif;
-  --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  --paper: #f5efe2;
+  --panel: #fbf8f0;
+  --ink: #221d16;
+  --ink-2: #4a4235;
+  --muted: #7c7161;
+  --line: #e4dccb;
+  --line-2: #d6ccb6;
+  --seal: #b23225;
+  --seal-2: #8f271d;
+  --on-seal: #fdf7ee;
+  --code-bg: #efe7d5;
+  --code-fg: #4a4235;
+  --maxw: 800px;
+  --wide: 1120px;
+  --serif: "Source Serif 4", Georgia, "Songti SC", "STSong",
+    "Noto Serif SC", serif;
+  --sans: "Source Sans 3", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, "SF Mono", Menlo,
+    Consolas, monospace;
+  --cjk-serif: "Songti SC", "STSong", "SimSun", "Noto Serif SC", serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #14110a;
+    --panel: #1c1810;
+    --ink: #ece4d5;
+    --ink-2: #cabfa9;
+    --muted: #9a8f79;
+    --line: #2c2517;
+    --line-2: #3a3120;
+    --seal: #e2604d;
+    --seal-2: #c94a38;
+    --on-seal: #17120b;
+    --code-bg: #211c12;
+    --code-fg: #cabfa9;
+  }
+}
+
+* { box-sizing: border-box; }
+
+html { font-size: 17px; -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  line-height: 1.68;
+  border-top: 3px solid var(--seal);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Paper grain — a faint printed-page texture, atmosphere without noise. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 @media (prefers-color-scheme: dark) {
-  :root { --bg: #0d1117; --fg: #e6edf3; --muted: #9198a1;
-    --border: #30363d; --accent: #4aa3ff; --code-bg: #161b22; }
+  body::before { opacity: 0.05; }
 }
-* { box-sizing: border-box; }
-html { font-size: 17px; }
-body { margin: 0; background: var(--bg); color: var(--fg);
-  font-family: var(--font); line-height: 1.65;
-  -webkit-font-smoothing: antialiased; }
-.wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 1.25rem; }
-header { border-bottom: 1px solid var(--border); }
-header .wrap { display: flex; flex-wrap: wrap; gap: .5rem 1.25rem;
-  align-items: baseline; padding-top: 1.1rem; padding-bottom: 1.1rem; }
-header .brand { font-weight: 650; letter-spacing: -.01em; }
-header nav { margin-left: auto; display: flex; gap: 1.1rem; flex-wrap: wrap; }
-header nav a { color: var(--muted); text-decoration: none; font-size: .92rem; }
-header nav a:hover { color: var(--accent); }
-main { padding: 2.2rem 0 3rem; }
-h1 { font-size: 2rem; line-height: 1.2; letter-spacing: -.02em; margin: 0 0 .3rem; }
-h1 .sub { display: block; font-size: 1.05rem; font-weight: 400;
-  color: var(--muted); letter-spacing: 0; margin-top: .35rem; }
-h2 { font-size: 1.35rem; margin: 2.4rem 0 .6rem; letter-spacing: -.01em; }
-h3 { font-size: 1.05rem; margin: 1.6rem 0 .3rem; }
-p, li { color: var(--fg); }
-a { color: var(--accent); text-underline-offset: 2px; }
-a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px;
+
+.wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 1.5rem;
+  position: relative; z-index: 1; }
+
+/* ---------- i18n visibility (English-first fallback) ---------- */
+.i18n > [lang="zh"], .i18n-block[lang="zh"] { display: none; }
+html[data-lang="zh"] .i18n > [lang="en"],
+html[data-lang="zh"] .i18n-block[lang="en"] { display: none; }
+html[data-lang="zh"] .i18n > [lang="zh"] { display: inline; }
+html[data-lang="zh"] .i18n-block[lang="zh"] { display: block; }
+html[data-lang="zh"] { --serif: var(--cjk-serif); }
+
+/* ---------- Header ---------- */
+header.site {
+  border-bottom: 1px solid var(--line);
+  background: color-mix(in srgb, var(--paper) 86%, transparent);
+  backdrop-filter: saturate(1.2) blur(6px);
+  position: sticky; top: 0; z-index: 20;
+}
+header.site .wrap {
+  display: flex; flex-wrap: wrap; align-items: center;
+  gap: 0.6rem 1.4rem; padding: 0.85rem 1.5rem;
+}
+.brand {
+  font-family: var(--serif); font-weight: 600; letter-spacing: -0.01em;
+  font-size: 1.02rem; color: var(--ink); text-decoration: none;
+  display: inline-flex; align-items: center; gap: 0.55rem;
+}
+.brand .mark {
+  width: 1.15rem; height: 1.15rem; border: 1.5px solid var(--seal);
+  border-radius: 3px; color: var(--seal); font-family: var(--cjk-serif);
+  font-size: 0.72rem; display: grid; place-items: center;
+  transform: rotate(-4deg); line-height: 1;
+}
+header.site nav { margin-left: auto; display: flex; gap: 1.2rem;
+  flex-wrap: wrap; }
+header.site nav a {
+  color: var(--muted); text-decoration: none; font-size: 0.82rem;
+  letter-spacing: 0.01em; position: relative; padding: 0.15rem 0;
+}
+header.site nav a::after {
+  content: ""; position: absolute; left: 0; right: 100%; bottom: -1px;
+  height: 1.5px; background: var(--seal); transition: right 0.28s ease;
+}
+header.site nav a:hover { color: var(--ink); }
+header.site nav a:hover::after { right: 0; }
+
+.langtoggle {
+  display: inline-flex; border: 1px solid var(--line-2);
+  border-radius: 999px; overflow: hidden;
+}
+.langtoggle button {
+  font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.04em;
+  padding: 0.22rem 0.62rem; background: transparent; color: var(--muted);
+  border: 0; cursor: pointer; line-height: 1.4;
+}
+.langtoggle button + button { border-left: 1px solid var(--line-2); }
+html[data-lang="en"] .langtoggle [data-setlang="en"],
+html[data-lang="zh"] .langtoggle [data-setlang="zh"] {
+  background: var(--seal); color: var(--on-seal);
+}
+.langtoggle button:focus-visible { outline: 2px solid var(--seal);
+  outline-offset: 1px; }
+
+main { padding: 0 0 4rem; position: relative; z-index: 1; }
+
+/* ---------- Hero ---------- */
+.hero { padding: 3.4rem 0 2.2rem; position: relative;
+  border-bottom: 1px solid var(--line); }
+.hero .seal {
+  position: absolute; top: 2.6rem; right: 0;
+  width: 92px; height: 92px; border: 3px solid var(--seal);
+  border-radius: 10px; color: var(--seal); font-family: var(--cjk-serif);
+  font-size: 2.6rem; font-weight: 700; display: grid; place-items: center;
+  transform: rotate(-6deg); box-shadow: inset 0 0 0 2px var(--seal);
+  opacity: 0.92;
+}
+.eyebrow {
+  font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--seal); margin: 0 0 0.9rem;
+}
+h1 {
+  font-family: var(--serif); font-weight: 600; font-size: clamp(2rem, 5vw, 2.9rem);
+  line-height: 1.12; letter-spacing: -0.02em; margin: 0 0 0.5rem;
+  max-width: 20ch;
+}
+h1 .sub {
+  display: block; font-family: var(--sans); font-size: 1.02rem;
+  font-weight: 400; color: var(--muted); letter-spacing: 0;
+  line-height: 1.5; margin-top: 0.7rem; max-width: 52ch;
+}
+.lead { font-size: 1.12rem; color: var(--ink-2); max-width: 60ch;
+  margin: 1.2rem 0; }
+.pills { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1.4rem 0 1rem; }
+.pill {
+  font-family: var(--mono); font-size: 0.76rem; letter-spacing: 0.02em;
+  color: var(--ink-2); background: var(--panel);
+  border: 1px solid var(--line-2); border-radius: 999px;
+  padding: 0.18rem 0.66rem;
+}
+.stamp-line { font-size: 0.92rem; color: var(--muted); margin: 0.6rem 0 0; }
+.stamp-line .tick { color: var(--seal); font-weight: 700; }
+
+/* ---------- Sections ---------- */
+section.block { padding: 2.4rem 0 0; }
+.kicker {
+  font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--seal); margin: 0 0 0.5rem;
+  display: flex; align-items: center; gap: 0.7rem;
+}
+.kicker::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+h2 { font-family: var(--serif); font-weight: 600; font-size: 1.5rem;
+  letter-spacing: -0.01em; line-height: 1.25; margin: 0 0 0.8rem; }
+h3 { font-family: var(--serif); font-weight: 600; font-size: 1.1rem;
+  margin: 1.6rem 0 0.3rem; }
+p, li { color: var(--ink-2); }
+p { margin: 0.8rem 0; }
+a { color: var(--seal); text-decoration-color: color-mix(in srgb,
+  var(--seal) 40%, transparent); text-underline-offset: 3px; }
+a:hover { text-decoration-color: var(--seal); }
+a:focus-visible { outline: 2px solid var(--seal); outline-offset: 2px;
   border-radius: 2px; }
-code, .iri { font-family: var(--mono); font-size: .86em; }
-.iri { color: var(--muted); word-break: break-all; }
-.lead { font-size: 1.08rem; color: var(--fg); }
+strong { color: var(--ink); font-weight: 600; }
 .muted { color: var(--muted); }
-.pill { display: inline-block; font-size: .74rem; font-family: var(--mono);
-  color: var(--muted); border: 1px solid var(--border); border-radius: 999px;
-  padding: .05rem .5rem; vertical-align: middle; }
-.card { border: 1px solid var(--border); border-radius: 8px;
-  padding: 1rem 1.1rem; margin: .9rem 0; }
-.card h3 { margin-top: 0; }
-.card .zh { color: var(--muted); font-weight: 400; }
+
+code, .iri { font-family: var(--mono); font-size: 0.85em; }
+code {
+  background: var(--code-bg); color: var(--code-fg);
+  padding: 0.08em 0.36em; border-radius: 4px;
+}
+.iri { color: var(--muted); word-break: break-all; background: none; }
+
+/* ---------- Cards / term cards ---------- */
+.term {
+  border: 1px solid var(--line); border-radius: 10px; background: var(--panel);
+  padding: 1.1rem 1.2rem; margin: 0.9rem 0; position: relative;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+.term::before {
+  content: ""; position: absolute; left: -1px; top: 12%; bottom: 12%;
+  width: 3px; background: var(--seal); border-radius: 3px;
+  opacity: 0; transition: opacity 0.2s ease;
+}
+.term:hover { border-color: var(--line-2); transform: translateY(-1px); }
+.term:hover::before { opacity: 1; }
+.term-h { display: flex; align-items: baseline; gap: 0.7rem;
+  flex-wrap: wrap; }
+.term-h h3 { margin: 0; font-size: 1.08rem; }
+.frag {
+  font-family: var(--mono); font-size: 0.74rem; color: var(--seal);
+  border: 1px solid color-mix(in srgb, var(--seal) 35%, transparent);
+  border-radius: 999px; padding: 0.05rem 0.5rem; margin-left: auto;
+}
+.term .def { color: var(--ink-2); margin: 0.55rem 0 0.2rem; font-size: 0.98rem; }
 dl.meta { display: grid; grid-template-columns: max-content 1fr;
-  gap: .2rem .9rem; margin: .6rem 0 0; }
-dl.meta dt { color: var(--muted); font-size: .82rem; font-family: var(--mono); }
+  gap: 0.25rem 1rem; margin: 0.7rem 0 0; }
+dl.meta dt { color: var(--muted); font-size: 0.78rem; font-family: var(--mono);
+  letter-spacing: 0.02em; }
 dl.meta dd { margin: 0; }
-table { width: 100%; border-collapse: collapse; margin: .8rem 0; font-size: .95rem; }
-th, td { text-align: left; padding: .5rem .6rem; border-bottom: 1px solid var(--border);
+
+/* ---------- Tables ---------- */
+.tablewrap { overflow-x: auto; margin: 1rem 0; border: 1px solid var(--line);
+  border-radius: 10px; }
+table { width: 100%; border-collapse: collapse; font-size: 0.94rem; }
+thead th {
+  text-align: left; font-family: var(--mono); font-size: 0.7rem;
+  text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted);
+  font-weight: 500; padding: 0.7rem 0.85rem; background: var(--panel);
+  border-bottom: 1px solid var(--line-2); white-space: nowrap;
+}
+tbody td { padding: 0.6rem 0.85rem; border-bottom: 1px solid var(--line);
   vertical-align: top; }
-th { font-size: .76rem; text-transform: uppercase; letter-spacing: .04em;
-  color: var(--muted); font-weight: 600; }
-pre { background: var(--code-bg); border: 1px solid var(--border);
-  border-radius: 8px; padding: .9rem 1rem; overflow-x: auto; font-size: .85rem; }
-.filerow { display: flex; gap: .6rem; align-items: baseline; flex-wrap: wrap; }
-.filerow code { flex: none; }
-footer { border-top: 1px solid var(--border); color: var(--muted);
-  font-size: .86rem; padding: 1.6rem 0 3rem; }
-footer p { color: var(--muted); margin: .3rem 0; }
-.notice { border-left: 3px solid var(--accent); padding: .1rem 0 .1rem 1rem;
-  margin: 1.2rem 0; color: var(--muted); }
+tbody tr:last-child td { border-bottom: 0; }
+tbody tr { transition: background 0.15s ease; }
+tbody tr:hover { background: color-mix(in srgb, var(--seal) 4%, transparent); }
+td .num { font-family: var(--mono); color: var(--ink); }
+
+/* ---------- Notice ---------- */
+.notice {
+  border: 1px solid color-mix(in srgb, var(--seal) 28%, var(--line));
+  border-left: 3px solid var(--seal); border-radius: 8px;
+  background: color-mix(in srgb, var(--seal) 5%, var(--panel));
+  padding: 0.85rem 1.05rem; margin: 1.4rem 0; color: var(--ink-2);
+  font-size: 0.96rem;
+}
+.notice strong { color: var(--seal); }
+
+.filerow { display: flex; gap: 0.55rem 0.7rem; align-items: baseline;
+  flex-wrap: wrap; margin: 0.6rem 0 0; }
+
+pre {
+  background: var(--code-bg); border: 1px solid var(--line);
+  border-radius: 10px; padding: 0.9rem 1.05rem; overflow-x: auto;
+  font-size: 0.84rem; line-height: 1.6;
+}
+pre code { background: none; padding: 0; }
+
+/* ---------- Footer ---------- */
+footer.site { border-top: 1px solid var(--line); margin-top: 3rem;
+  padding: 2rem 0 3.4rem; }
+footer.site .wrap { display: flex; flex-wrap: wrap; gap: 0.8rem 2rem;
+  align-items: flex-start; }
+footer.site .colophon { max-width: 42ch; }
+footer.site p { color: var(--muted); font-size: 0.85rem; margin: 0.3rem 0; }
+footer.site .seal-sm {
+  width: 44px; height: 44px; border: 2px solid var(--seal); border-radius: 6px;
+  color: var(--seal); font-family: var(--cjk-serif); font-size: 1.3rem;
+  display: grid; place-items: center; transform: rotate(-6deg);
+  box-shadow: inset 0 0 0 1.5px var(--seal); flex: none; opacity: 0.85;
+}
+
+/* ---------- Motion ---------- */
+@keyframes rise { from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: none; } }
+@keyframes stamp { from { opacity: 0; transform: rotate(-6deg) scale(1.18); }
+  to { opacity: 0.92; transform: rotate(-6deg) scale(1); } }
+.reveal { opacity: 0; animation: rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1)
+  forwards; }
+.reveal.d1 { animation-delay: 0.06s; }
+.reveal.d2 { animation-delay: 0.12s; }
+.reveal.d3 { animation-delay: 0.18s; }
+.reveal.d4 { animation-delay: 0.26s; }
+.hero .seal.reveal { animation: stamp 0.55s 0.3s cubic-bezier(0.2, 0.9, 0.3, 1)
+  backwards; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .hero .seal.reveal { animation: none; opacity: 1; }
+  header.site { backdrop-filter: none; }
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 640px) {
+  html { font-size: 16px; }
+  .hero { padding-top: 2.6rem; }
+  .hero .seal { width: 64px; height: 64px; font-size: 1.8rem; top: 1.8rem; }
+  h1 { max-width: none; }
+  header.site nav { gap: 0.9rem; font-size: 0.8rem; order: 3; width: 100%;
+    margin-left: 0; }
+}
 </style>
+<script>/* No-flash language init. Inlined into <head> and run before body renders,
+   so the correct language paints on first frame (no bilingual flicker).
+   Order: saved choice -> browser language (zh* -> Chinese) -> English. */
+(function () {
+  var l = "en";
+  try {
+    var s = localStorage.getItem("opf-lang");
+    if (s === "en" || s === "zh") {
+      l = s;
+    } else if ((navigator.language || "en").toLowerCase().indexOf("zh") === 0) {
+      l = "zh";
+    }
+  } catch (e) {}
+  var d = document.documentElement;
+  d.setAttribute("data-lang", l);
+  d.setAttribute("lang", l === "zh" ? "zh" : "en");
+})();
+</script>
 </head>
 <body>
-<header><div class="wrap">
-<span class="brand">O'Process Framework Ontology</span>
-<nav><a href="/">首页 Home</a><a href="/ns/opf">本体 Ontology</a><a href="/ns/opf-shapes">约束 Shapes</a><a href="/opf">概念方案 Scheme</a><a href="/conformance">合规 Conformance</a></nav>
+<header class="site"><div class="wrap">
+<a class="brand" href="/"><span class="mark" aria-hidden="true">印</span>O'Process Framework Ontology</a>
+<nav><a href="/"><span class="i18n"><span lang="en">Home</span><span lang="zh">首页</span></span></a><a href="/ns/opf"><span class="i18n"><span lang="en">Ontology</span><span lang="zh">本体</span></span></a><a href="/ns/opf-shapes"><span class="i18n"><span lang="en">Shapes</span><span lang="zh">约束</span></span></a><a href="/opf"><span class="i18n"><span lang="en">Scheme</span><span lang="zh">概念方案</span></span></a><a href="/conformance"><span class="i18n"><span lang="en">Conformance</span><span lang="zh">合规</span></span></a></nav>
+<div class="langtoggle" role="group" aria-label="Language / 语言">
+<button type="button" data-setlang="en" aria-pressed="true">EN</button>
+<button type="button" data-setlang="zh" aria-pressed="false">中文</button>
+</div>
 </div></header>
 <main><div class="wrap">
-<h1>OPF 概念方案<span class="sub">skos:ConceptScheme ·
-2436 process nodes across 5 levels</span></h1>
-<p class="lead">概念方案 IRI <span class="iri">https://oprocess.net/opf</span>；
-每个流程节点的实例 IRI 为 <span class="iri">https://oprocess.net/opf/node/{id}</span>，
-<strong>不带版本号</strong>——跨框架版本的 ID 重映射由 id_aliases 承载。</p>
-<table>
-<tr><th>层级</th><th>Level</th><th>节点数</th></tr>
-<tr><td>类目</td><td>L1</td><td>13</td></tr>
-<tr><td>流程组</td><td>L2</td><td>101</td></tr>
-<tr><td>流程</td><td>L3</td><td>522</td></tr>
-<tr><td>活动</td><td>L4</td><td>1585</td></tr>
-<tr><td>任务</td><td>L5</td><td>215</td></tr>
-</table>
-<p><span class="pill">SKOS dump</span>
-<a href="/data/opf-nodes.ttl">/data/opf-nodes.ttl</a>
-（skos:ConceptScheme + 2436 skos:Concept，双语标签，同时 typed 为
-opf:ProcessNode）。</p>
-<div class="notice">逐节点 HTML 解引用（/opf/node/{id}）为后续里程碑；当前先提供
-完整 Turtle 转储与本体文档。</div>
+<section class="hero">
+<p class="eyebrow">OPF-O · <span class="i18n"><span lang="en">Concept Scheme</span><span lang="zh">概念方案</span></span></p>
+<h1><span class="i18n"><span lang="en">OPF Concept Scheme</span><span lang="zh">OPF 概念方案</span></span><span class="sub"><span class="i18n"><span lang="en">skos:ConceptScheme · 2,436 process nodes across 5 levels</span><span lang="zh">skos:ConceptScheme · 5 层 2436 个流程节点</span></span></span></h1>
+<p class="lead"><span class="i18n"><span lang="en">Concept scheme IRI <span class="iri">https://oprocess.net/opf</span>; each process node's instance IRI is <span class="iri">https://oprocess.net/opf/node/{id}</span> and carries no version segment — ID remaps across framework versions are held by <code>id_aliases</code>.</span><span lang="zh">概念方案 IRI <span class="iri">https://oprocess.net/opf</span>；每个流程节点的实例 IRI 为 <span class="iri">https://oprocess.net/opf/node/{id}</span>，不带版本号——跨框架版本的 ID 重映射由 <code>id_aliases</code> 承载。</span></span></p>
+</section>
+<section class="block">
+<div class="tablewrap"><table>
+<thead><tr><th><span class="i18n"><span lang="en">Tier</span><span lang="zh">层级</span></span></th><th>Level</th>
+<th><span class="i18n"><span lang="en">Nodes</span><span lang="zh">节点数</span></span></th></tr></thead>
+<tbody><tr><td><span class="i18n"><span lang="en">Category</span><span lang="zh">类目</span></span></td><td><code>L1</code></td><td class="num">13</td></tr><tr><td><span class="i18n"><span lang="en">Process group</span><span lang="zh">流程组</span></span></td><td><code>L2</code></td><td class="num">101</td></tr><tr><td><span class="i18n"><span lang="en">Process</span><span lang="zh">流程</span></span></td><td><code>L3</code></td><td class="num">522</td></tr><tr><td><span class="i18n"><span lang="en">Activity</span><span lang="zh">活动</span></span></td><td><code>L4</code></td><td class="num">1,585</td></tr><tr><td><span class="i18n"><span lang="en">Task</span><span lang="zh">任务</span></span></td><td><code>L5</code></td><td class="num">215</td></tr></tbody>
+</table></div>
+<p class="filerow"><span class="pill">SKOS dump</span>
+<a href="/data/opf-nodes.ttl">/data/opf-nodes.ttl</a></p>
+<div class="notice"><span class="i18n"><span lang="en">Per-node HTML dereference (/opf/node/{id}) is a later milestone; for now the full Turtle dump and the ontology document are provided.</span><span lang="zh">逐节点 HTML 解引用（/opf/node/{id}）为后续里程碑；当前先提供完整 Turtle 转储与本体文档。</span></span></div>
+</section>
 </div></main>
-<footer><div class="wrap">
-<p>OPF-O · 对齐 GB/T 48000.3—2026（自声明，非认证）· Aligned with
-GB/T 48000.3—2026 (self-declared, not a certification).</p>
-<p><a href="/conformance">合规声明 Conformance</a> ·
-本体 IRI <span class="iri">https://oprocess.net/ns/opf</span></p>
+<footer class="site"><div class="wrap">
+<div class="seal-sm" aria-hidden="true">印</div>
+<div class="colophon">
+<p>OPF-O · <span class="i18n"><span lang="en">aligned with GB/T 48000.3—2026 (self-declared, not a certification)</span><span lang="zh">对齐 GB/T 48000.3—2026（自声明，非认证）</span></span></p>
+<p><span class="i18n"><span lang="en"><a href="/conformance">Conformance</a> · ontology IRI</span><span lang="zh"><a href="/conformance">合规声明</a> · 本体 IRI</span></span> <span class="iri">https://oprocess.net/ns/opf</span></p>
+<p class="muted"><span class="i18n"><span lang="en">Ontology / shapes / context CC BY 4.0 · node dump evaluation-use-only</span><span lang="zh">本体 / 约束 / 上下文 CC BY 4.0 · 节点转储仅供评估</span></span></p>
+</div>
 </div></footer>
+<script>/* Language toggle. Inlined before </body>. Switches the whole page between
+   full English and full Chinese, remembers the choice, and keeps the EN/中文
+   control and <html lang> in sync for accessibility. */
+(function () {
+  var d = document.documentElement;
+  var btns = document.querySelectorAll("[data-setlang]");
+  function apply(l) {
+    d.setAttribute("data-lang", l);
+    d.setAttribute("lang", l === "zh" ? "zh" : "en");
+    try {
+      localStorage.setItem("opf-lang", l);
+    } catch (e) {}
+    for (var i = 0; i < btns.length; i++) {
+      var on = btns[i].getAttribute("data-setlang") === l;
+      btns[i].setAttribute("aria-pressed", on ? "true" : "false");
+    }
+  }
+  for (var i = 0; i < btns.length; i++) {
+    (function (b) {
+      b.addEventListener("click", function () {
+        apply(b.getAttribute("data-setlang"));
+      });
+    })(btns[i]);
+  }
+  apply(d.getAttribute("data-lang") || "en");
+})();
+</script>
 </body>
 </html>
