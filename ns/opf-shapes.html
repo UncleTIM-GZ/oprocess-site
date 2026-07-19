@@ -166,6 +166,41 @@ h1 .sub {
 .stamp-line { font-size: 0.92rem; color: var(--muted); margin: 0.6rem 0 0; }
 .stamp-line .tick { color: var(--ink-2); font-weight: 700; }
 
+/* ---------- Masthead (landing hero = specification title page) ---------- */
+.masthead { text-align: center; border-bottom: 0; padding-bottom: 2.6rem; }
+.masthead .eyebrow { color: var(--muted); }
+.masthead h1 {
+  max-width: 24ch; margin-inline: auto; text-wrap: balance;
+  font-size: clamp(1.95rem, 4.4vw, 2.8rem);
+}
+.masthead .lead {
+  max-width: 56ch; margin-inline: auto; text-wrap: pretty; color: var(--ink-2);
+}
+.tagline {
+  font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--muted); margin: 1.3rem 0 0;
+}
+.meta-strip {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--line-2); border-bottom: 1px solid var(--line-2);
+  margin: 2.3rem 0 0; text-align: center;
+}
+.meta-cell { padding: 0.95rem 0.6rem; }
+.meta-cell + .meta-cell { border-left: 1px solid var(--line); }
+.meta-label {
+  font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--muted);
+}
+.meta-val {
+  font-family: var(--serif); font-size: 1.15rem; color: var(--ink);
+  margin-top: 0.3rem; line-height: 1.15;
+}
+@media (max-width: 560px) {
+  .meta-strip { grid-template-columns: repeat(2, 1fr); }
+  .meta-cell:nth-child(3) { border-left: 0; }
+  .meta-cell:nth-child(n + 3) { border-top: 1px solid var(--line); }
+}
+
 /* ---------- Sections ---------- */
 section.block { padding: 2.4rem 0 0; }
 .kicker {

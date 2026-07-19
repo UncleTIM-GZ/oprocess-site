@@ -166,6 +166,41 @@ h1 .sub {
 .stamp-line { font-size: 0.92rem; color: var(--muted); margin: 0.6rem 0 0; }
 .stamp-line .tick { color: var(--ink-2); font-weight: 700; }
 
+/* ---------- Masthead (landing hero = specification title page) ---------- */
+.masthead { text-align: center; border-bottom: 0; padding-bottom: 2.6rem; }
+.masthead .eyebrow { color: var(--muted); }
+.masthead h1 {
+  max-width: 24ch; margin-inline: auto; text-wrap: balance;
+  font-size: clamp(1.95rem, 4.4vw, 2.8rem);
+}
+.masthead .lead {
+  max-width: 56ch; margin-inline: auto; text-wrap: pretty; color: var(--ink-2);
+}
+.tagline {
+  font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--muted); margin: 1.3rem 0 0;
+}
+.meta-strip {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--line-2); border-bottom: 1px solid var(--line-2);
+  margin: 2.3rem 0 0; text-align: center;
+}
+.meta-cell { padding: 0.95rem 0.6rem; }
+.meta-cell + .meta-cell { border-left: 1px solid var(--line); }
+.meta-label {
+  font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--muted);
+}
+.meta-val {
+  font-family: var(--serif); font-size: 1.15rem; color: var(--ink);
+  margin-top: 0.3rem; line-height: 1.15;
+}
+@media (max-width: 560px) {
+  .meta-strip { grid-template-columns: repeat(2, 1fr); }
+  .meta-cell:nth-child(3) { border-left: 0; }
+  .meta-cell:nth-child(n + 3) { border-top: 1px solid var(--line); }
+}
+
 /* ---------- Sections ---------- */
 section.block { padding: 2.4rem 0 0; }
 .kicker {
@@ -320,14 +355,17 @@ footer.site p { color: var(--muted); font-size: 0.85rem; margin: 0.3rem 0; }
 </div>
 </div></header>
 <main><div class="wrap">
-<section class="hero">
-<p class="eyebrow reveal">OPF-O · GB/T 48000.3—2026</p>
-<h1 class="reveal d1"><span class="i18n"><span lang="en">The first open process-classification ontology built to GB/T 48000.3</span><span lang="zh">首个照 GB/T 48000.3 建模的开放流程分类本体</span></span><span class="sub"><span class="i18n"><span lang="en">O'Process Framework Ontology — process nodes, KPIs and roles as governed, machine-readable semantic assets.</span><span lang="zh">O'Process 流程分类框架本体——把流程节点、KPI 与岗位表达为受治理、可被机器读取的语义资产。</span></span></span></h1>
-<p class="lead reveal d2"><span class="i18n"><span lang="en">OPF-O expresses 2,436 process nodes from APQC PCF 8.0, ITIL V5, SCOR DS 14.0 and AI-era extensions — with their KPIs and roles — as a SKOS concept scheme, an OWL ontology, SHACL constraints and a JSON-LD context.</span><span lang="zh">OPF-O 把 APQC PCF 8.0 / ITIL V5 / SCOR DS 14.0 与 AI 时代扩展的 2436 个流程节点，连同其 KPI 与岗位，表达为 SKOS 概念方案 + OWL 本体 + SHACL 约束 + JSON-LD 上下文。</span></span></p>
-<div class="pills reveal d3">
-<span class="pill">2,436 nodes</span><span class="pill">SKOS</span><span class="pill">OWL</span><span class="pill">SHACL</span><span class="pill">JSON-LD</span>
+<section class="hero masthead">
+<p class="eyebrow reveal"><span class="i18n"><span lang="en">GB/T 48000.3—2026 · Ontology Modeling Requirements</span><span lang="zh">GB/T 48000.3—2026 · 本体建模要求</span></span></p>
+<h1 class="reveal d1"><span class="i18n"><span lang="en">The first open process-classification ontology built to GB/T 48000.3</span><span lang="zh">首个照 GB/T 48000.3 建模的开放流程分类本体</span></span></h1>
+<p class="lead reveal d2"><span class="i18n"><span lang="en">O'Process Framework Ontology — APQC PCF 8.0, ITIL V5 and SCOR DS 14.0, with their KPIs and roles, unified into one governed semantic layer.</span><span lang="zh">O'Process 流程分类框架本体——APQC PCF 8.0、ITIL V5 与 SCOR DS 14.0 及其 KPI 与岗位，统一为一个受治理的语义层。</span></span></p>
+<p class="tagline reveal d2">SKOS · OWL · SHACL · JSON-LD</p>
+<div class="meta-strip reveal d3">
+<div class="meta-cell"><div class="meta-label"><span class="i18n"><span lang="en">Version</span><span lang="zh">版本</span></span></div><div class="meta-val">2.0.0</div></div>
+<div class="meta-cell"><div class="meta-label"><span class="i18n"><span lang="en">Nodes</span><span lang="zh">节点</span></span></div><div class="meta-val">2,436</div></div>
+<div class="meta-cell"><div class="meta-label">KPIs</div><div class="meta-val">3,284</div></div>
+<div class="meta-cell"><div class="meta-label"><span class="i18n"><span lang="en">Status</span><span lang="zh">状态</span></span></div><div class="meta-val"><span class="i18n"><span lang="en">Self-declared</span><span lang="zh">自声明</span></span></div></div>
 </div>
-<p class="stamp-line reveal d3"><span class="tick">▸</span> <span class="i18n"><span lang="en">aligned with GB/T 48000.3—2026 (self-declared, not a certification)</span><span lang="zh">对齐 GB/T 48000.3—2026（自声明，非认证）</span></span></p>
 </section>
 <div class="notice"><span class="i18n"><span lang="en">Aligned with GB/T 48000.3—2026 <em>Standard Digitalization — Part 3: Ontology Modeling Requirements</em> (effective 2026-08-01). This is a <strong>self-declared</strong> alignment — not a certification or conformity assessment by any body.</span><span lang="zh">对齐 GB/T 48000.3—2026《标准数字化 第 3 部分：本体建模要求》（2026-08-01 实施）。本页所述为<strong>自声明对齐</strong>，非任何机构的认证或合格评定。</span></span></div><section class="block">
 <p class="kicker"><span class="i18n"><span lang="en">Resources</span><span lang="zh">资源</span></span></p>
